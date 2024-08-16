@@ -19,31 +19,24 @@
   <meta name="author" content="Yu Kang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Shell分类WindowsWindows has two command-line shells:  the Command shell (cmd)  PowerShell   cmd可以运行win命令；PowerShell可以运行win命令和cmdlet命令。 cmd脚本语言.bat；PowerShell脚本语言.ps1 Linuxsh, csh, tcsh, bash, zsh, fish…">
+    <meta name="description" content="APTAPT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。 常用命令： 123456789101112131415161718192021222324# 列出所有可更新的软件清单命令sudo apt update# 升级软件包sudo apt upgrade# 列出可更新的软件包及版本信息apt list --upgradable# 列出所有已安装的包ap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shell">
-<meta property="og:url" content="https://ss-yuki.github.io/2024/07/Shell/index.html">
+<meta property="og:title" content="Ubuntu包管理">
+<meta property="og:url" content="https://ss-yuki.github.io/2024/08/package-management/index.html">
 <meta property="og:site_name" content="Kang">
-<meta property="og:description" content="Shell分类WindowsWindows has two command-line shells:  the Command shell (cmd)  PowerShell   cmd可以运行win命令；PowerShell可以运行win命令和cmdlet命令。 cmd脚本语言.bat；PowerShell脚本语言.ps1 Linuxsh, csh, tcsh, bash, zsh, fish…">
+<meta property="og:description" content="APTAPT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。 常用命令： 123456789101112131415161718192021222324# 列出所有可更新的软件清单命令sudo apt update# 升级软件包sudo apt upgrade# 列出可更新的软件包及版本信息apt list --upgradable# 列出所有已安装的包ap">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell.png">
-<meta property="og:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell-1.png">
-<meta property="og:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell-2.png">
-<meta property="og:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell-3.png">
-<meta property="og:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell-4.png">
-<meta property="article:published_time" content="2024-07-27T05:40:00.000Z">
-<meta property="article:modified_time" content="2024-08-16T07:43:42.787Z">
+<meta property="article:published_time" content="2024-08-01T05:50:00.000Z">
+<meta property="article:modified_time" content="2024-08-16T07:55:05.388Z">
 <meta property="article:author" content="Yu Kang">
-<meta property="article:tag" content="zsh">
-<meta property="article:tag" content="oh-my-zsh">
-<meta property="article:tag" content="zim">
-<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="apt">
+<meta property="article:tag" content="dpkg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://ss-yuki.github.io/2024/07/Shell/img-Shell.png">
   
   
   
-  <title>Shell - Kang</title>
+  <title>Ubuntu包管理 - Kang</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Shell"></span>
+            <span id="subtitle" data-typed-text="Ubuntu包管理"></span>
           
         </div>
 
@@ -233,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-27 13:40" pubdate>
-          July 27, 2024 pm
+        <time datetime="2024-08-01 13:50" pubdate>
+          August 1, 2024 pm
         </time>
       </span>
     
@@ -245,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          788 words
+          1.1k words
         
       </span>
     
@@ -256,7 +249,7 @@
         
         
         
-          7 mins
+          9 mins
         
       </span>
     
@@ -302,68 +295,73 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Shell</h1>
+            <h1 id="seo-header">Ubuntu包管理</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Shell分类"><a href="#Shell分类" class="headerlink" title="Shell分类"></a>Shell分类</h1><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p>Windows has two command-line shells:</p>
+                <h1 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h1><p>APT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。</p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 列出所有可更新的软件清单命令</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-comment"># 升级软件包</span><br><span class="hljs-built_in">sudo</span> apt upgrade<br><span class="hljs-comment"># 列出可更新的软件包及版本信息</span><br>apt list --upgradable<br><span class="hljs-comment"># 列出所有已安装的包</span><br>apt list --installed<br><span class="hljs-comment"># 列出所有已安装的包的版本信息</span><br>apt list --all-versions<br><span class="hljs-comment"># 安装指定的软件命令</span><br><span class="hljs-built_in">sudo</span> apt install &lt;package_name&gt;<br><span class="hljs-comment"># 更新指定的软件命令</span><br><span class="hljs-built_in">sudo</span> apt update &lt;package_name&gt;<br><span class="hljs-comment"># 显示软件包具体信息,例如：版本号，安装大小，依赖关系等等</span><br><span class="hljs-built_in">sudo</span> apt show &lt;package_name&gt;<br><span class="hljs-comment"># 删除软件包命令</span><br><span class="hljs-built_in">sudo</span> apt remove &lt;package_name&gt;<br><span class="hljs-comment"># 清理不再使用的依赖和库文件</span><br><span class="hljs-built_in">sudo</span> apt autoremove<br><span class="hljs-comment"># 移除软件包及配置文件</span><br><span class="hljs-built_in">sudo</span> apt purge &lt;package_name&gt;<br><span class="hljs-comment"># 查找软件包命令</span><br><span class="hljs-built_in">sudo</span> apt search &lt;keyword&gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="软件包存储库"><a href="#软件包存储库" class="headerlink" title="软件包存储库"></a>软件包存储库</h1><p>Ubuntu 软件包存储库信息存储在 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list</strong> 文件中。第三方 PPA 和其他存储库作为 <strong>.list</strong> 文件存储在 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;</strong> 目录中。</p>
+<p>下面为 Ubuntu22.04LTS 的 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list</strong> 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span><br><span class="hljs-comment"># newer versions of the distribution.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy main restricted</span><br><br><span class="hljs-comment">## Major bug fix updates produced after the final release of the</span><br><span class="hljs-comment">## distribution.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted</span><br><br><span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span><br><span class="hljs-comment">## team. Also, please note that software in universe WILL NOT receive any</span><br><span class="hljs-comment">## review or updates from the Ubuntu security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy universe</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates universe</span><br><br><span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span><br><span class="hljs-comment">## team, and may not be under a free licence. Please satisfy yourself as to</span><br><span class="hljs-comment">## your rights to use the software. Also, please note that software in</span><br><span class="hljs-comment">## multiverse WILL NOT receive any review or updates from the Ubuntu</span><br><span class="hljs-comment">## security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy multiverse</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates multiverse</span><br><br><span class="hljs-comment">## N.B. software from this repository may not have been tested as</span><br><span class="hljs-comment">## extensively as that contained in the main release, although it includes</span><br><span class="hljs-comment">## newer versions of some applications which may provide useful features.</span><br><span class="hljs-comment">## Also, please note that software in backports WILL NOT receive any review</span><br><span class="hljs-comment">## or updates from the Ubuntu security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-backports</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span> <span class="hljs-string">universe</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security universe</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security multiverse</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>deb-src deb</strong></p>
+<p><strong>deb-src</strong>: 包含软件源代码、版本修改说明、构建指令以及编译工具等。允许用户下载软件包的源代码，从而可以自己编译软件。这通常用于开发者或那些需要定制软件包或需要最新开发版本的用户。</p>
+<p><strong>deb</strong>: 包含可执行文件、库文件、配置文件、man&#x2F;info页面、版权声明和其它文档。提供了预先编译好的软件包，用户可以直接安装而无需自己编译。</p>
+<p><strong>jammy</strong>: Ubuntu22.04 代号</p>
 <ul>
-<li><p>the Command shell (cmd)</p>
+<li><p>Ubuntu 18.04 LTS bionic</p>
 </li>
-<li><p>PowerShell</p>
+<li><p>Ubuntu 20.04 LTS focal</p>
+</li>
+<li><p>Ubuntu 22.04 LTS jammy</p>
+</li>
+<li><p>Ubuntu 24.04 LTS noble</p>
 </li>
 </ul>
-<p>cmd可以运行win命令；PowerShell可以运行win命令和cmdlet命令。</p>
-<p>cmd脚本语言<code>.bat</code>；PowerShell脚本语言<code>.ps1</code></p>
-<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><p>sh, csh, tcsh, bash, zsh, fish…</p>
-<p><strong>Bash Shell</strong></p>
-<p>1989 年首次发布，由 Brain Fox 为 GNU 项目编写的，目的是作为 Bourne Shell (sh) 的免费软件替代品，是大多数 Linux 发行版的默认 Shell 环境。</p>
-<p>用户配置设置在 <code>.bashrc</code> 中。</p>
-<p><strong>Z Shell</strong></p>
-<p>1990 年由 Paul Falstad 发布，它具有 Bash、Korn Shell 和 C Shell 共有的一些功能，macOS 默认使用 Zsh Shell。</p>
-<p>比 Bash 可配置度更高，有围绕 Z Shell 构建的框架（Oh My Zsh）。</p>
-<p>用户配置设置在 <code>.zshrc</code> 中。</p>
-<p><strong>Fish Shell</strong></p>
-<p>2005 年由 Axel Liljencrantz 创建，不符合 POSIX shell 标准。</p>
-<p>由于默认情况下 Fish 已经预置了很多配置，因此它被认为比 Zsh 等其他 <code>sh</code> 选项更适合初学者。</p>
-<h1 id="自定义工具"><a href="#自定义工具" class="headerlink" title="自定义工具"></a>自定义工具</h1><p>查看&#x2F;切换shell</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 查看可用shell</span><br><span class="hljs-built_in">cat</span> /etc/shells                          <br><span class="hljs-comment"># /etc/shells: valid login shells</span><br>/bin/sh<br>/bin/bash<br>/usr/bin/bash<br>/bin/rbash<br>/usr/bin/rbash<br>/usr/bin/sh<br>/bin/dash<br>/usr/bin/dash<br>/usr/bin/tmux<br>/usr/bin/screen<br>/bin/zsh<br>/usr/bin/zsh<br><br><span class="hljs-comment"># 查看当前shell</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>                                                            <br><br><span class="hljs-comment"># 可以通过包管理器安装zsh</span><br><span class="hljs-comment"># 切换成zsh</span><br>chsh -s $(<span class="hljs-built_in">which</span> zsh)<br></code></pre></td></tr></table></figure>
+<p><strong>main restricted universe multiverse</strong> 软件包存储库</p>
+<ul>
+<li><p><strong>main</strong>: 保留了Ubuntu支持的自由和开源软件。</p>
+</li>
+<li><p><strong>restricted</strong>: 保留专有驱动程序（即 NVIDIA）。</p>
+</li>
+<li><p><strong>universe</strong>: 保留了社区维护的免费开源软件。</p>
+</li>
+<li><p><strong>multiverse</strong>: 保留有版权限制或法律问题的软件。</p>
+</li>
+</ul>
+<p><strong>jammy jammy-security jammy-backports jammy-updates jammy-proposed</strong> 不同分支</p>
+<ul>
+<li><p><strong>基础</strong>：由于ubuntu是每6个月发行一个新版，当发行后，所有软件包的版本在这六个月内将保持不变，即使是有新版都不更新。除开重要的安全补丁外，所有新功能和非安全性补丁将不会提供给用户更新。  </p>
+</li>
+<li><p><strong>security</strong>：仅修复漏洞，并且尽可能少的改变软件包的行为，低风险。</p>
+</li>
+<li><p><strong>backports</strong>：backports 的团队则认为最好的更新策略是 security 策略加上新版本的软件（包括候选版本的），但不会由Ubuntu security team审查和更新。</p>
+</li>
+<li><p><strong>updates</strong>：包含了针对特定版本的更新，这些更新是在原始版本发布之后提供的，可能包括安全修复、bug修复和一些较小的功能改进。  </p>
+</li>
+<li><p><strong>proposed</strong>：updates类的测试部分，仅建议提供测试和反馈的人进行安装。</p>
+</li>
+</ul>
+<h1 id="dpkg"><a href="#dpkg" class="headerlink" title="dpkg"></a>dpkg</h1><p>dpkg是Debian的一个底层包管理工具，主要用于对已下载到本地和已安装的软件包进行管理。</p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">dpkg -i &lt;package&gt;  <span class="hljs-comment"># 安装一个在本地文件系统上存在的Debian软件包</span><br>dpkg -r &lt;package&gt;  <span class="hljs-comment"># 移除一个已经安装的软件包</span><br>dpkg -P &lt;package&gt;  <span class="hljs-comment"># 移除已安装软件包及配置文件</span><br>dpkg -L &lt;package&gt;  <span class="hljs-comment"># 列出安装的软件包清单</span><br>dpkg -s &lt;package&gt;  <span class="hljs-comment"># 显出软件包的安装状态</span><br></code></pre></td></tr></table></figure>
 
-<p>一些主题中的部件需要特殊字体，下载使用使用Nerd字体。</p>
-<p>Window：<a target="_blank" rel="noopener" href="https://www.nerdfonts.com/">官网</a>下载MesloLG Nerd Font，将所有的<code>TrueType字体文件</code>右键进行安装。</p>
-<p>MacOS&#x2F;Linux：脚本安装。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">git <span class="hljs-built_in">clone</span> https://github.com/ryanoasis/nerd-fonts.git --depth 1<br><span class="hljs-built_in">cd</span> nerd-fonts<br>./install.sh<br></code></pre></td></tr></table></figure>
 
-<h2 id="Oh-my-zsh"><a href="#Oh-my-zsh" class="headerlink" title="Oh my zsh"></a>Oh my zsh</h2><p>适用于zsh。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装命令</span><br>sh -c <span class="hljs-string">&quot;<span class="hljs-subst">$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)</span>&quot;</span><br><span class="hljs-comment"># 卸载</span><br>uninstall_oh_my_zsh<br></code></pre></td></tr></table></figure>
 
-<p>安装后<code>~/.zshrc</code>会改变，从而启动oh-my-zsh，此时终端如下：</p>
-<p><img src="/2024/07/Shell/img-Shell.png" srcset="/img/loading.gif" lazyload></p>
-<p>之后可以下载主题和插件，一方面要将下载保存到<code>$ZSH_CUSTOM</code>(<del>&#x2F;.oh-my-zsh&#x2F;custom)，另一方面要在&#96;</del>&#x2F;.zshrc&#96;进行相应设置以生效。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 主题$ZSH_CUSTOM/themes，插件$ZSH_CUSTOM/plugins</span><br><span class="hljs-comment"># powerlevel10k主题  </span><br>git <span class="hljs-built_in">clone</span> https://github.com/romkatv/powerlevel10k.git <span class="hljs-variable">$ZSH_CUSTOM</span>/themes/powerlevel10k  <br><span class="hljs-comment"># zsh-autosuggestions自动提示插件  </span><br>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-autosuggestions <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-autosuggestions  <br><span class="hljs-comment"># zsh-syntax-highlighting语法高亮插件  </span><br>git <span class="hljs-built_in">clone</span> https://github.com/zsh-users/zsh-syntax-highlighting.git <span class="hljs-variable">$ZSH_CUSTOM</span>/plugins/zsh-syntax-highlighting<br><br><span class="hljs-comment"># 对于p10k，需要进行自定义配置</span><br>p10k configure<br><br><span class="hljs-comment"># ~/.zshrc</span><br><span class="hljs-comment"># 修改主题  </span><br>ZSH_THEME=<span class="hljs-string">&quot;powerlevel10k/powerlevel10k&quot;</span>  <br><br><span class="hljs-comment"># 启用插件  </span><br>plugins=(  <br>  git  <br>  zsh-autosuggestions  <br>  zsh-syntax-highlighting  <br>)<br><br><span class="hljs-comment"># 更改配置后重载</span><br>omz reload<br></code></pre></td></tr></table></figure>
 
-<p>效果展示：</p>
-<p><img src="/2024/07/Shell/img-Shell-1.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="Zim"><a href="#Zim" class="headerlink" title="Zim"></a>Zim</h2><p>Zim 启动速度更快，相比 oh-my-zsh 更加轻量级，适用于zsh。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装命令</span><br>curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh<br></code></pre></td></tr></table></figure>
-
-<p>安装后<code>~/.zshrc</code>会改变，而Zim的配置文件为<code>~/.zimrc</code>，在该文件中列出需要使用的插件（包括主题），比如：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">zmodule romkatv/powerlevel10k<br>zmodule completion<br></code></pre></td></tr></table></figure>
-
-<p>之后运行<code>zimfw install</code>来安装所需插件，与oh-my-zsh类似，同样需要配置<code>p10k</code>主题。</p>
-<p>效果展示：</p>
-<p><img src="/2024/07/Shell/img-Shell-2.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="Oh-my-posh"><a href="#Oh-my-posh" class="headerlink" title="Oh my posh"></a>Oh my posh</h2><p>可以用于多种shell。</p>
-<p><img src="/2024/07/Shell/img-Shell-3.png" srcset="/img/loading.gif" lazyload></p>
-<p>可以在Windows中美化PowerShell的样式。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装命令</span><br>winget upgrade JanDeDobbeleer.OhMyPosh -s winget<br></code></pre></td></tr></table></figure>
-
-<p>Windows中自带蓝色的Windows PowerShell，可以在Microsoft Store中下载黑色的PowerShell，本文使用黑色的PowerShell作为终端的默认shell。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 查看使用的shell</span><br>oh-my-posh get shell<br><br><span class="hljs-comment"># PowerShell配置脚本文件位置（类似~/.zshrc）</span><br>(base) PS C:\Users\kangy&gt; <span class="hljs-variable">$PROFILE</span><br>C:\Users\kangy\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1<br><span class="hljs-comment"># 编辑PowerShell配置文件脚本</span><br>notepad <span class="hljs-variable">$PROFILE</span><br><span class="hljs-comment"># 若文件不存在则创建</span><br>New-Item -Path <span class="hljs-variable">$PROFILE</span> -Type File -Force<br><span class="hljs-comment"># 在脚本中添加如下启动oh-my-posh并使主题生效</span><br>&amp; ([ScriptBlock]::Create((oh-my-posh init pwsh --config &quot;<span class="hljs-variable">$env</span>:POSH_THEMES_PATH\jandedobbeleer.omp.json&quot; --print) -join &quot;`n&quot;))<br><br><span class="hljs-comment"># 重载shell</span><br>. <span class="hljs-variable">$PROFILE</span><br></code></pre></td></tr></table></figure>
-
-<p>效果展示：</p>
-<p><img src="/2024/07/Shell/img-Shell-4.png" srcset="/img/loading.gif" lazyload></p>
+<p>参考：</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://forum.ubuntu.com.cn/viewtopic.php?f=77&t=253103">源中的 backports proposed security updates 的意思（已解决） - Ubuntu中文论坛</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-apt.html">Linux apt 命令 | 菜鸟教程 (runoob.com)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/challenglistic/article/details/127825934">Ubuntu 软件包管理工具 —— dkpg、apt（dpkg常用指令、apt 软件源的配置）-CSDN博客</a></p>
+</li>
+</ol>
 
                 
               </div>
@@ -376,13 +374,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/zsh/" class="print-no-link">#zsh</a>
+        <a href="/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
       
-        <a href="/tags/oh-my-zsh/" class="print-no-link">#oh-my-zsh</a>
+        <a href="/tags/apt/" class="print-no-link">#apt</a>
       
-        <a href="/tags/zim/" class="print-no-link">#zim</a>
-      
-        <a href="/tags/Shell/" class="print-no-link">#Shell</a>
+        <a href="/tags/dpkg/" class="print-no-link">#dpkg</a>
       
     </div>
   
@@ -394,8 +390,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Shell</div>
-      <div>https://ss-yuki.github.io/2024/07/Shell/</div>
+      <div>Ubuntu包管理</div>
+      <div>https://ss-yuki.github.io/2024/08/package-management/</div>
     </div>
     <div class="license-meta">
       
@@ -407,7 +403,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>July 27, 2024</div>
+          <div>August 1, 2024</div>
         </div>
       
       
@@ -439,15 +435,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/package-management/" title="Ubuntu包管理">
+                      <a href="/2024/08/install-Ubuntu/" title="Ubuntu安装记录">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Ubuntu包管理</span>
+                        <span class="hidden-mobile">Ubuntu安装记录</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/07/Shell/" title="Shell">
+                        <span class="hidden-mobile">Shell</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
