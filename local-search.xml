@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>将光猫设置为桥接</title>
+    <link href="/2024/08/Modem-and-Router/"/>
+    <url>/2024/08/Modem-and-Router/</url>
+    
+    <content type="html"><![CDATA[<p>光猫：光电信号转化。</p><p>路由器：路由扩展网络，WAN 口接上层网络，LAN 口或者无线 WiFi 接扩展设备，形成一个新的局域网。</p><p>光猫设置为路由：</p><p>光猫负责光电信号转化，同时负责拨号上网，此时连接光猫的设备可直接上网，通过 DHCP 获取 ip；此时光猫一侧是外网，一侧是自身形成的局域网（eg：192.168.1.x），通过路由器可以进一步扩展网络。</p><p>光猫设置为桥接：</p><p>此时光猫只负责光电信号转化，起桥梁作用，此时连接路由器后，路由器通过拨号上网，路由器一侧直接是外网（前者路由器一侧是光猫的下属网络），另一侧是路由器下属局域网。这种设置既将拨号负担置于性能更强的路由器（光猫专注于转化工作），又简化了网络的层级关系，将外网-光猫-路由器的网络结构简化为外网-路由器。需要注意的是：仅能单个设备进行拨号，所以改为桥接后不能再将电脑直接连接光猫拨号（路由器已经拨号）。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Modem</tag>
+      
+      <tag>Router</tag>
+      
+      <tag>DHCP</tag>
+      
+      <tag>Network</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Ubuntu安装记录</title>
     <link href="/2024/08/install-Ubuntu/"/>
     <url>/2024/08/install-Ubuntu/</url>
@@ -14,9 +39,9 @@
     
     <tags>
       
-      <tag>Ubuntu</tag>
-      
       <tag>zsh</tag>
+      
+      <tag>Ubuntu</tag>
       
       <tag>Nvidia</tag>
       
