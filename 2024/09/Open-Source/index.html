@@ -19,23 +19,27 @@
   <meta name="author" content="Yu Kang">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、HexoHexo 安装和基本使用123456789101112131415161718192021222324252627# 准备工作：安装NodeJS# 全局安装Hexonpm install -g hexo-cli# 初始化Hexo项目hexo init hexo-blogcd hexo-blog# 查看目录结构tree -L 1.├── _config.landscape.yml	├──">
+    <meta name="description" content="一、PR流程选择社区项目进行 Fork，开发工作应当放在自己的仓库中，个人仓库的 master 分支负责与上游仓库进行同步。  Clone 个人仓库的项目，在本地开发中，可以同时添加上游仓库源；修改代码时，从最新的 master checkout 到新的临时分支（eg：tmp-branch），在该分支上进行开发，之后 push 到远程个人仓库的一个临时分支（可以直接和本地分支名相同）上。 1234">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Github Pages + Hexo 搭建个人博客">
-<meta property="og:url" content="https://ss-yuki.github.io/2024/08/build-blog-by-Hexo/index.html">
+<meta property="og:title" content="开源贡献的一些规范">
+<meta property="og:url" content="https://ss-yuki.github.io/2024/09/Open-Source/index.html">
 <meta property="og:site_name" content="Kang">
-<meta property="og:description" content="一、HexoHexo 安装和基本使用123456789101112131415161718192021222324252627# 准备工作：安装NodeJS# 全局安装Hexonpm install -g hexo-cli# 初始化Hexo项目hexo init hexo-blogcd hexo-blog# 查看目录结构tree -L 1.├── _config.landscape.yml	├──">
+<meta property="og:description" content="一、PR流程选择社区项目进行 Fork，开发工作应当放在自己的仓库中，个人仓库的 master 分支负责与上游仓库进行同步。  Clone 个人仓库的项目，在本地开发中，可以同时添加上游仓库源；修改代码时，从最新的 master checkout 到新的临时分支（eg：tmp-branch），在该分支上进行开发，之后 push 到远程个人仓库的一个临时分支（可以直接和本地分支名相同）上。 1234">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-15T07:20:00.000Z">
-<meta property="article:modified_time" content="2024-08-16T07:19:44.384Z">
+<meta property="og:image" content="https://ss-yuki.github.io/2024/08/Modem-and-Router/pen-Source.png">
+<meta property="og:image" content="https://ss-yuki.github.io/2024/08/Modem-and-Router/pen-Source-1.png">
+<meta property="article:published_time" content="2024-09-07T13:49:00.000Z">
+<meta property="article:modified_time" content="2024-09-21T16:35:48.292Z">
 <meta property="article:author" content="Yu Kang">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="GithubPages">
+<meta property="article:tag" content="OpenSource">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="commitizen">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ss-yuki.github.io/2024/08/Modem-and-Router/pen-Source.png">
   
   
   
-  <title>Github Pages + Hexo 搭建个人博客 - Kang</title>
+  <title>开源贡献的一些规范 - Kang</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +219,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Github Pages + Hexo 搭建个人博客"></span>
+            <span id="subtitle" data-typed-text="开源贡献的一些规范"></span>
           
         </div>
 
@@ -226,8 +230,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-08-15 15:20" pubdate>
-          August 15, 2024 pm
+        <time datetime="2024-09-07 21:49" pubdate>
+          September 7, 2024 pm
         </time>
       </span>
     
@@ -238,7 +242,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          599 words
+          814 words
         
       </span>
     
@@ -249,7 +253,7 @@
         
         
         
-          5 mins
+          7 mins
         
       </span>
     
@@ -295,44 +299,118 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Github Pages + Hexo 搭建个人博客</h1>
+            <h1 id="seo-header">开源贡献的一些规范</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、Hexo"><a href="#一、Hexo" class="headerlink" title="一、Hexo"></a>一、Hexo</h1><h2 id="Hexo-安装和基本使用"><a href="#Hexo-安装和基本使用" class="headerlink" title="Hexo 安装和基本使用"></a>Hexo 安装和基本使用</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 准备工作：安装NodeJS</span><br><span class="hljs-comment"># 全局安装Hexo</span><br>npm install -g hexo-cli<br><br><span class="hljs-comment"># 初始化Hexo项目</span><br>hexo init hexo-blog<br><span class="hljs-built_in">cd</span> hexo-blog<br><br><span class="hljs-comment"># 查看目录结构</span><br>tree -L 1<br>.<br>├── _config.landscape.yml	<br>├── _config.yml	<span class="hljs-comment"># 配置，比如之后在该文件配置github账号</span><br>├── node_modules<br>├── package-lock.json<br>├── package.json<br>├── scaffolds<br>├── <span class="hljs-built_in">source</span>	<span class="hljs-comment"># source/_posts 存放博客文件（Markdown格式）</span><br>└── themes	<span class="hljs-comment"># 更改博客主题皮肤</span><br><br><span class="hljs-comment"># 常用Hexo命令</span><br>hexo init [folder]	<span class="hljs-comment"># 初始化</span><br>hexo new [layout] &lt;title&gt;	<span class="hljs-comment"># 新建文章</span><br>hexo generate	<span class="hljs-comment"># 生成静态文件，根目录生成public文件夹</span><br>hexo server	<span class="hljs-comment"># 启动本地服务器，http://localhost:4000/</span><br>hexo deploy	<span class="hljs-comment"># 部署到远程 (hexo -g d 生成静态文件并部署)</span><br>hexo clean	<span class="hljs-comment"># 清除缓存文件 (db.json) 和已生成的静态文件 (public)</span><br></code></pre></td></tr></table></figure>
+                <h1 id="一、PR流程"><a href="#一、PR流程" class="headerlink" title="一、PR流程"></a>一、PR流程</h1><p>选择社区项目进行 Fork，开发工作应当放在自己的仓库中，个人仓库的 <code>master</code> 分支负责与上游仓库进行同步。</p>
+<p><img src="/2024/08/Modem-and-Router/pen-Source.png" srcset="/img/loading.gif" lazyload></p>
+<p>Clone 个人仓库的项目，在本地开发中，可以同时添加上游仓库源；修改代码时，从最新的 <code>master</code> checkout 到新的临时分支（eg：<code>tmp-branch</code>），在该分支上进行开发，之后 push 到远程个人仓库的一个临时分支（可以直接和本地分支名相同）上。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 添加上游仓库</span><br>git remote add upstream https://github.com/xxx/xxx.git<br><br><span class="hljs-comment"># 创建并切换到新的分支</span><br>git checkout -b tmp-branch<br></code></pre></td></tr></table></figure>
 
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>官网提供了多种可选主题 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">Themes | Hexo</a></p>
-<p>选择某个主题下载压缩包，以 Fluid 主题为例，在 GitHub 中下载 Releases 包并解压，重命名为 fluid 放在 themes 目录下。</p>
-<p>更改 <code>_config.yml</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">theme: fluid  <span class="hljs-comment"># 指定主题</span><br>language: zh-CN  <span class="hljs-comment"># 指定主题显示语言</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 新建</span><br>hexo new my-blog	<span class="hljs-comment"># hexo new post my-blog 指定layout</span><br><br><span class="hljs-comment"># 查看变化</span><br>tree <span class="hljs-built_in">source</span>/_posts                                                       <br><span class="hljs-built_in">source</span>/_posts<br>├── hello-world.md<br>└── my-blog.md<br><br><span class="hljs-comment"># 写入内容后本地测试</span><br>hexo s<br></code></pre></td></tr></table></figure>
-
-<p>通过 <code>new</code> 命令可以在 <code>source/_posts</code> 文件夹下创建相应的 Markdown 文件。</p>
-<p>通常需要在文章中插入图片，为了更规律的管理文章的图片，为每篇文章准备相对应的资源文件夹，将 <code>_config.yml</code> 文件中的 <code>post_asset_folder</code> 选项设为 <code>true</code> 后，创建新文章时自动创建一个同名资源文件夹。</p>
-<p>为了使用 Markdown 引用图片，继续改动 <code>_config.yml</code>。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">post_asset_folder:</span> <span class="hljs-literal">true</span>  <br><span class="hljs-attr">marked:</span>  <br>  <span class="hljs-attr">prependRoot:</span> <span class="hljs-literal">true</span>  <br>  <span class="hljs-attr">postAsset:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
-
-<p>之后可以在文章中直接通过 <code>![](xxx.jpg)</code> 引用对应的图片。</p>
-<p>通过更改主题的 <code>_config.yml</code> 文件可以实现个性化，比如改变主页某处的文字、增加阅读量记录、增加评论功能等，可以根据主题相应的文档进行更改。可以注册 <a target="_blank" rel="noopener" href="https://console.leancloud.cn/">LeanCloud</a>，使用其统计服务等功能。</p>
-<h1 id="二、Github-Pages"><a href="#二、Github-Pages" class="headerlink" title="二、Github Pages"></a>二、Github Pages</h1><p>在 <code>Hexo</code> 项目中安装 <code>hexo-deployer-git</code> 包。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
-
-<p>新建仓库，仓库名格式为 <code>&lt;用户名&gt;.github.io</code> ；在 <code>_config.yml</code> 中配置 <code>GitHub</code> 的相关信息。<code>token</code> 可以在 <code>github</code> 的 <code>Settings/Developer Settings</code> 中生成。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repository:</span> <span class="hljs-string">git@github.com:SS-Yuki/SS-Yuki.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br>  <span class="hljs-attr">token:</span> <span class="hljs-string">xxx</span><br></code></pre></td></tr></table></figure>
-
-<p>部署到 <code>github</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">hexo -g d<br></code></pre></td></tr></table></figure>
-
+<p>此时进入上游仓库，可以发现来自个人仓库临时分支的 <code>pull request</code> 提示，点击并填写提交信息，发起合并请求。自动化测试工具通过后，就只需等待社区人员审查，交流通过后便可以将自己的修改合进原项目。此时可以直接删除个人仓库中的临时分支。</p>
+<p>下次修改前需要先将个人仓库的 <code>master</code> 分支与上游仓库进行同步。</p>
 <blockquote>
-<p>其他相关：Netlify，Vercel，CF Pages</p>
+<p>一般在社区的首次 PR 请求，会要求贡献者签署 CLA，按照相应的提示操作即可。一些社区也会提供 <code>playground</code> 项目，可以在该项目中练习 PR 的流程，并完成签署 CLA。</p>
+<p>需要注意的是，提交 PR 请求，通过后会根据 PR 的提交信息创建一个新的 commit 点，PR 中个人分支上的多条新 commit 点并不会出现在上游仓库的主分支上。</p>
 </blockquote>
+<h1 id="二、commit-规范"><a href="#二、commit-规范" class="headerlink" title="二、commit 规范"></a>二、commit 规范</h1><h2 id="Angular-提交信息规范"><a href="#Angular-提交信息规范" class="headerlink" title="Angular 提交信息规范"></a>Angular 提交信息规范</h2><p>需要一定的规范来约束开发人员的 commit 信息格式，其中，<a target="_blank" rel="noopener" href="https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines">Angular提交信息规范</a>是一种非常受开发人员欢迎的 commit 信息规范。</p>
+<p>每条 commit message 都由 <strong>header</strong>、<strong>body</strong> 和 <strong>footer</strong> 组成。而 <strong>header</strong> 包括 <strong>type</strong>、<strong>scope</strong> 和 <strong>subject</strong>：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">&lt;<span class="hljs-built_in">type</span>&gt;(&lt;scope&gt;): &lt;subject&gt;<br>&lt;BLANK LINE&gt;<br>&lt;body&gt;<br>&lt;BLANK LINE&gt;<br>&lt;footer&gt;<br></code></pre></td></tr></table></figure>
+
+<p><strong>type</strong> 必须是以下值之一：</p>
+<ul>
+<li><strong>feat</strong>: A new feature</li>
+<li><strong>fix</strong>: A bug fix</li>
+<li><strong>docs</strong>: Documentation only changes</li>
+<li><strong>style</strong>: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)</li>
+<li><strong>refactor</strong>: A code change that neither fixes a bug nor adds a feature</li>
+<li><strong>perf</strong>: A code change that improves performance</li>
+<li><strong>test</strong>: Adding missing or correcting existing tests</li>
+<li><strong>chore</strong>: Changes to the build process or auxiliary tools and libraries such as documentation generation</li>
+</ul>
+<p><strong>subject</strong> 要求：</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如 <code>change</code>，而不是 <code>changed</code> 或 <code>changes</code></li>
+<li>不要大写首字母</li>
+<li>不在末尾添加句号</li>
+</ul>
+<h2 id="commitizen"><a href="#commitizen" class="headerlink" title="commitizen"></a>commitizen</h2><p>借助 <strong>commitizen</strong> 可以方便地规范输入 commit 信息。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 全局安装</span><br>npm install -g commitizen<br>```  <br><br>另一方面，需要安装适配器进行标准提交提示，此处选择 `cz-conventional-changelog`。<br><br>```sh<br><span class="hljs-comment"># 全局安装</span><br>npm install -g cz-conventional-changelog<br><span class="hljs-comment"># 在根目录下添加文件 .czrc，内容如下</span><br>&#123; <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;cz-conventional-changelog&quot;</span> &#125;<br><br><br><span class="hljs-comment"># 本地安装</span><br>npm install --save-dev cz-conventional-changelog<br><span class="hljs-comment"># 在package.json中添加配置</span><br><span class="hljs-string">&quot;config&quot;</span>: &#123;<br>   <span class="hljs-string">&quot;commitizen&quot;</span>: &#123;<br>     <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;cz-conventional-changelog&quot;</span><br>   &#125;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>此时，可以使用 <code>cz</code> 命令代替 <code>git commit</code>，进行规范化 commit 提交。</p>
+<p><img src="/2024/08/Modem-and-Router/pen-Source-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="三、社区术语"><a href="#三、社区术语" class="headerlink" title="三、社区术语"></a>三、社区术语</h1><table>
+<thead>
+<tr>
+<th align="center">缩写</th>
+<th align="center">英文</th>
+<th align="center">中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">PR</td>
+<td align="center">Pull request</td>
+<td align="center">拉取请求</td>
+</tr>
+<tr>
+<td align="center">BTW</td>
+<td align="center">By the way</td>
+<td align="center">顺便说一句</td>
+</tr>
+<tr>
+<td align="center">WIP</td>
+<td align="center">Work in progress, do not merge yet</td>
+<td align="center">进行中暂时不要合并</td>
+</tr>
+<tr>
+<td align="center">LGTM</td>
+<td align="center">Looks good to me</td>
+<td align="center">在我看来很好</td>
+</tr>
+<tr>
+<td align="center">PTAL</td>
+<td align="center">Please take a look</td>
+<td align="center">帮我看下，请别人 review 自己的 PR</td>
+</tr>
+<tr>
+<td align="center">CC</td>
+<td align="center">Carbon copy</td>
+<td align="center">抄送</td>
+</tr>
+<tr>
+<td align="center">FYI</td>
+<td align="center">For your information</td>
+<td align="center">供你参考</td>
+</tr>
+<tr>
+<td align="center">RFC</td>
+<td align="center">Request for comments</td>
+<td align="center">我觉得这个想法很好, 我们来一起讨论下</td>
+</tr>
+<tr>
+<td align="center">IIRC</td>
+<td align="center">If I recall correctly</td>
+<td align="center">如果我没记错</td>
+</tr>
+<tr>
+<td align="center">ACK</td>
+<td align="center">Acknowledgement</td>
+<td align="center">认可</td>
+</tr>
+<tr>
+<td align="center">NACK&#x2F;NAK</td>
+<td align="center">Negative acknowledgement</td>
+<td align="center">不认可</td>
+</tr>
+</tbody></table>
 <p>参考：</p>
 <ol>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs">Hexo 中文文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/yaorongke/article/details/119089190">GitHub Pages + Hexo搭建个人博客网站，史上最全教程_hexo博客-CSDN博客</a></li>
-<li><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">配置指南 | Hexo Fluid 用户手册 (fluid-dev.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1602747">Github 常用社交用语 -腾讯云开发者社区-腾讯云 (tencent.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 提交信息规范</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8564d1281366">使用标准commit生成changelog标准化 - 简书 (jianshu.com)</a></li>
 </ol>
 
                 
@@ -346,9 +424,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+        <a href="/tags/OpenSource/" class="print-no-link">#OpenSource</a>
       
-        <a href="/tags/GithubPages/" class="print-no-link">#GithubPages</a>
+        <a href="/tags/Git/" class="print-no-link">#Git</a>
+      
+        <a href="/tags/commitizen/" class="print-no-link">#commitizen</a>
       
     </div>
   
@@ -360,8 +440,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Github Pages + Hexo 搭建个人博客</div>
-      <div>https://ss-yuki.github.io/2024/08/build-blog-by-Hexo/</div>
+      <div>开源贡献的一些规范</div>
+      <div>https://ss-yuki.github.io/2024/09/Open-Source/</div>
     </div>
     <div class="license-meta">
       
@@ -373,7 +453,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 15, 2024</div>
+          <div>September 7, 2024</div>
         </div>
       
       
@@ -405,18 +485,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/09/Open-Source/" title="开源贡献的一些规范">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">开源贡献的一些规范</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/08/Modem-and-Router/" title="将光猫设置为桥接">
-                        <span class="hidden-mobile">将光猫设置为桥接</span>
+                      <a href="/2024/08/build-blog-by-Hexo/" title="Github Pages + Hexo 搭建个人博客">
+                        <span class="hidden-mobile">Github Pages + Hexo 搭建个人博客</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
