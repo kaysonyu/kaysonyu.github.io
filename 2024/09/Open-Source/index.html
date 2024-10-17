@@ -26,16 +26,16 @@
 <meta property="og:site_name" content="Kang">
 <meta property="og:description" content="一、PR流程选择社区项目进行 Fork，开发工作应当放在自己的仓库中，个人仓库的 master 分支负责与上游仓库进行同步。  Clone 个人仓库的项目，在本地开发中，可以同时添加上游仓库源；修改代码时，从最新的 master checkout 到新的临时分支（eg：tmp-branch），在该分支上进行开发，之后 push 到远程个人仓库的一个临时分支（可以直接和本地分支名相同）上。 1234">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://kaysonyu.github.io/2024/08/Modem-and-Router/pen-Source.png">
-<meta property="og:image" content="https://kaysonyu.github.io/2024/08/Modem-and-Router/pen-Source-1.png">
+<meta property="og:image" content="https://kaysonyu.github.io/2024/09/Open-Source/img-Open-Source.png">
+<meta property="og:image" content="https://kaysonyu.github.io/2024/09/Open-Source/img-Open-Source-1.png">
 <meta property="article:published_time" content="2024-09-07T13:49:00.000Z">
-<meta property="article:modified_time" content="2024-09-21T16:35:48.292Z">
+<meta property="article:modified_time" content="2024-09-23T02:17:25.699Z">
 <meta property="article:author" content="Yu Kang">
 <meta property="article:tag" content="OpenSource">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="commitizen">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kaysonyu.github.io/2024/08/Modem-and-Router/pen-Source.png">
+<meta name="twitter:image" content="https://kaysonyu.github.io/2024/09/Open-Source/img-Open-Source.png">
   
   
   
@@ -305,7 +305,7 @@
               <div class="markdown-body">
                 
                 <h1 id="一、PR流程"><a href="#一、PR流程" class="headerlink" title="一、PR流程"></a>一、PR流程</h1><p>选择社区项目进行 Fork，开发工作应当放在自己的仓库中，个人仓库的 <code>master</code> 分支负责与上游仓库进行同步。</p>
-<p><img src="/2024/08/Modem-and-Router/pen-Source.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/09/Open-Source/img-Open-Source.png" srcset="/img/loading.gif" lazyload></p>
 <p>Clone 个人仓库的项目，在本地开发中，可以同时添加上游仓库源；修改代码时，从最新的 <code>master</code> checkout 到新的临时分支（eg：<code>tmp-branch</code>），在该分支上进行开发，之后 push 到远程个人仓库的一个临时分支（可以直接和本地分支名相同）上。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 添加上游仓库</span><br>git remote add upstream https://github.com/xxx/xxx.git<br><br><span class="hljs-comment"># 创建并切换到新的分支</span><br>git checkout -b tmp-branch<br></code></pre></td></tr></table></figure>
 
@@ -341,7 +341,7 @@
 
 
 <p>此时，可以使用 <code>cz</code> 命令代替 <code>git commit</code>，进行规范化 commit 提交。</p>
-<p><img src="/2024/08/Modem-and-Router/pen-Source-1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2024/09/Open-Source/img-Open-Source-1.png" srcset="/img/loading.gif" lazyload></p>
 <h1 id="三、社区术语"><a href="#三、社区术语" class="headerlink" title="三、社区术语"></a>三、社区术语</h1><table>
 <thead>
 <tr>
@@ -484,6 +484,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/10/MSVC-GCC-Clang/" title="MSVC，GCC，Clang——不同C/C++编译器对比">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MSVC，GCC，Clang——不同C/C++编译器对比</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
