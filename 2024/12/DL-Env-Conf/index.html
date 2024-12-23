@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yu Kang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="CUDA 软件栈深度学习等项目通常需要 GPU 的支持，而 CUDA 负责连接程序与硬件 GPU。CUDA 是由 NVIDIA 推出的一种通用并行计算架构，既是一种并行计算平台，也是一种编程模型。该架构使 GPU 能够解决复杂的计算问题。CUDA 的英文全称是 Compute Unified Device Architecture。 要正确配置 CUDA 环境，我们需要先了解程序是如何利用 GPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CUDA 软件栈">
+<meta property="og:url" content="https://kaysonyu.github.io/2024/12/DL-Env-Conf/index.html">
+<meta property="og:site_name" content="Kang">
+<meta property="og:description" content="CUDA 软件栈深度学习等项目通常需要 GPU 的支持，而 CUDA 负责连接程序与硬件 GPU。CUDA 是由 NVIDIA 推出的一种通用并行计算架构，既是一种并行计算平台，也是一种编程模型。该架构使 GPU 能够解决复杂的计算问题。CUDA 的英文全称是 Compute Unified Device Architecture。 要正确配置 CUDA 环境，我们需要先了解程序是如何利用 GPU">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-9.png">
+<meta property="og:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-8.png">
+<meta property="og:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-5.png">
+<meta property="og:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-6.png">
+<meta property="og:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-7.png">
+<meta property="article:published_time" content="2024-12-23T07:51:00.000Z">
+<meta property="article:modified_time" content="2024-12-23T14:04:34.098Z">
+<meta property="article:author" content="Yu Kang">
+<meta property="article:tag" content="CUDA">
+<meta property="article:tag" content="GPU">
+<meta property="article:tag" content="pytorch">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kaysonyu.github.io/DL-Env-Conf/img-DL-Env-Conf-9.png">
+  
+  
+  
+  <title>CUDA 软件栈 - Kang</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kaysonyu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","app_key":"gTiuzqlKBUteFsFrdlr8hsTh","server_url":"https://pppxp5yi.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Kang" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CUDA 软件栈"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-23 15:51" pubdate>
+          December 23, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CUDA 软件栈</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="CUDA-软件栈"><a href="#CUDA-软件栈" class="headerlink" title="CUDA 软件栈"></a>CUDA 软件栈</h2><p>深度学习等项目通常需要 GPU 的支持，而 <code>CUDA</code> 负责连接程序与硬件 GPU。<code>CUDA</code> 是由 NVIDIA 推出的一种通用并行计算架构，既是一种并行计算平台，也是一种编程模型。该架构使 GPU 能够解决复杂的计算问题。<code>CUDA</code> 的英文全称是 <strong>Compute Unified Device Architecture</strong>。</p>
+<p>要正确配置 <code>CUDA</code> 环境，我们需要先了解程序是如何利用 GPU 运行的。<code>CUDA</code> 的软件栈（software stack）如下图所示：<br><img src="/DL-Env-Conf/img-DL-Env-Conf-9.png" srcset="/img/loading.gif" lazyload><br><img src="/DL-Env-Conf/img-DL-Env-Conf-8.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图，在编写 <code>GPU</code> 程序时，我们可以选择不同的方式与 GPU 交互：可以使用 <code>CUDA Libraries</code> 的高性能实现，调用 <code>CUDA Runtime</code> 提供的 API，或者直接调用底层的 <code>CUDA Driver</code> API。</p>
+<ul>
+<li><p><strong>CUDA Libraries</strong>：包括 <code>CUDA</code> 提供的高性能函数库，用于简化开发者的工作。常见的库有：</p>
+<ul>
+<li><code>cuBLAS</code>：基本线性代数子程序库，用于矩阵计算。</li>
+<li><code>cuDNN</code>：深度学习库，为神经网络提供优化支持。</li>
+<li>…</li>
+</ul>
+</li>
+<li><p><strong>CUDA Runtime</strong>：<code>CUDA</code> 运行时 API，提供对 GPU 的高层次控制，可以通过定义 Kernel 函数实现并行计算，简化了与 GPU 的交互。</p>
+</li>
+<li><p><strong>CUDA Driver</strong>：<code>CUDA</code> 驱动 API，位于 <code>Runtime API</code> 的底层，直接与 GPU 硬件交互，适合高级用户进行定制化开发，例如动态加载模块等。</p>
+</li>
+</ul>
+<h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><h3 id="显卡"><a href="#显卡" class="headerlink" title="显卡"></a>显卡</h3><p>GPU 是显卡上的一块芯片，这也就是我们需要操纵的硬件部分。对于该部分需要了解的是，不同的N卡具有不同的计算能力（Compute Capability），这是直接与 GPU 挂钩的。不同型号 GPU 的计算能力见<a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">官网</a>。<br><img src="/DL-Env-Conf/img-DL-Env-Conf-5.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="显卡驱动"><a href="#显卡驱动" class="headerlink" title="显卡驱动"></a>显卡驱动</h3><p>显卡驱动是显卡与计算机连接的桥梁，可以让计算机识别到 GPU 硬件，因此必须正确安装。</p>
+<p><code>NVIDIA Driver</code> 是 NVIDIA 显卡的驱动软件。对于家用电脑，一般可以先在 <a target="_blank" rel="noopener" href="https://www.nvidia.com/en-us/drivers/">官网</a> 下载并安装显卡驱动。<br>下载后，可以通过命令查看驱动信息，如下图所示：<br><img src="/DL-Env-Conf/img-DL-Env-Conf-6.png" srcset="/img/loading.gif" lazyload></p>
+<p>由图可知，当前驱动的版本为 <code>550.107.02</code>，同时发现 <code>CUDA Version</code> 为 <code>12.4</code>。这是因为 <code>CUDA Driver</code> 包含在驱动程序中，也就是说此时已经下载了上一部分提到的 <code>CUDA Driver</code> 层，版本为 <code>12.4</code>。</p>
+<h3 id="CUDA-Toolkit"><a href="#CUDA-Toolkit" class="headerlink" title="CUDA Toolkit"></a>CUDA Toolkit</h3><p><code>CUDA Toolkit</code> 由以下组件组成：</p>
+<ul>
+<li><p><strong>Compiler</strong>：<code>CUDA-C</code> 和 <code>CUDA-C++</code> 编译器 <code>NVCC</code> 位于 <code>bin/</code> 目录中。它建立在 <code>NVVM</code> 优化器之上，而 <code>NVVM</code> 优化器本身构建在 <code>LLVM</code> 编译器基础结构之上。开发人员可以使用 <code>nvvm/</code> 目录下的 Compiler SDK 直接针对 <code>NVVM</code> 进行开发。</p>
+</li>
+<li><p><strong>Tools</strong>：提供一些工具，例如 <code>profiler</code> 和 <code>debuggers</code>，这些工具可以从 <code>bin/</code> 目录中获取。</p>
+</li>
+<li><p><strong>Libraries</strong>：以下列出的一些科学库和实用程序库可以在 <code>lib/</code> 目录中使用（Windows 上的 DLL 位于 <code>bin/</code> 中），它们的接口位于 <code>include/</code> 目录中：</p>
+<ul>
+<li><code>cudart</code>：CUDA Runtime</li>
+<li><code>cudadevrt</code>：CUDA device runtime</li>
+<li><code>cupti</code>：CUDA profiling tools interface</li>
+<li><code>nvml</code>：NVIDIA management library</li>
+<li><code>nvrtc</code>：CUDA runtime compilation</li>
+<li><code>cublas</code>：BLAS (Basic Linear Algebra Subprograms，基础线性代数程序集)</li>
+<li><code>cublas_device</code>：BLAS kernel interface</li>
+<li>…</li>
+</ul>
+</li>
+<li><p><strong>CUDA Samples</strong>：演示如何使用各种 <code>CUDA</code> 和库 API 的代码示例。可在 Linux 和 Mac 的 <code>samples/</code> 目录中获得，Windows 上的路径是 <code>C:\ProgramData\NVIDIA Corporation\CUDA Samples</code>。</p>
+</li>
+<li><p><strong>CUDA Driver</strong>：运行 <code>CUDA</code> 应用程序需要系统至少有一个具有 <code>CUDA</code> 功能的 GPU 和与 <code>CUDA Toolkit</code> 兼容的驱动程序。<br>每个版本的 <code>CUDA Toolkit</code> 都对应一个最低版本的 <code>CUDA Driver</code>。如果安装的 <code>CUDA Driver</code> 版本低于官方推荐版本，很可能无法正常运行。<br><code>CUDA Driver</code> 是向后兼容的，这意味着根据 <code>CUDA</code> 的特定版本编译的应用程序可以在后续发布的 Driver 上继续工作。通常，为了方便，在安装 <code>CUDA Toolkit</code> 时会默认安装 <code>CUDA Driver</code>。</p>
+</li>
+</ul>
+<p>由以上可知，<code>CUDA Toolkit</code> 为我们编写 <code>CUDA</code> 程序提供了运行时，而无需直接使用底层的驱动程序。<br><code>CUDA Toolkit</code> 包含了编译器 <code>nvcc</code>，可以通过 <code>nvcc -V</code> 查看；同时也提供了一些链接库。由于这一层是由 Driver 层包装得来的，所以 <code>CUDA Toolkit</code> 会一同包含前文提到的 Driver。如果已经下载好驱动，则在下载 <code>CUDA Toolkit</code> 时无需勾选 Driver。</p>
+<p>需要注意的是，<code>CUDA Runtime</code> 的版本对底层 <code>Driver</code> 有版本要求（底层支持上层）。  </p>
+<ul>
+<li>一方面，如下图所示，可以在 <a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html">官网</a> 中查看 <code>CUDA Toolkit</code> 版本所要求的最低 <code>Driver</code> 版本。  </li>
+<li>另一方面，可以通过 <code>nvidia-smi</code> 查看当前的 <code>CUDA Driver</code> 版本，并确保满足 <code>CUDA Driver &gt;= CUDA Runtime</code> 的要求。</li>
+</ul>
+<p><img src="/DL-Env-Conf/img-DL-Env-Conf-7.png" srcset="/img/loading.gif" lazyload></p>
+<p>另一方面，<code>CUDA</code> 版本并不是只要足够小就能高枕无忧。一些新的架构（由计算能力体现）也需要较新版本的 <code>CUDA</code>。<br>对于 <code>CUDA Toolkit</code> 的版本选择，除了不能高于底层驱动的最大支持（<code>CUDA Driver</code> 版本），还需要符合硬件计算能力对 <code>CUDA Toolkit</code> 的要求（高于最低版本要求）。<br><code>GPU</code> 的算力与 <code>CUDA</code> 版本的对应关系可以通过 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CUDA#GPUs_supported">wiki</a> 或 <a target="_blank" rel="noopener" href="https://docs.nvidia.com/datacenter/tesla/drivers/index.html#cuda-arch-matrix">官网</a> 获取。</p>
+<h3 id="cuDNN"><a href="#cuDNN" class="headerlink" title="cuDNN"></a>cuDNN</h3><p><code>cuDNN</code>：<code>cuDNN</code> 的全称为 <code>NVIDIA CUDA® Deep Neural Network library</code>，是 NVIDIA 专门针对深度神经网络中的基础操作设计的基于 GPU 的加速库。<br><code>cuDNN</code> 为深度神经网络中的标准流程提供了高度优化的实现方式，例如 <code>convolution</code>、<code>pooling</code>、<code>normalization</code> 以及 <code>activation layers</code> 的前向和后向过程。</p>
+<h3 id="Pytorch"><a href="#Pytorch" class="headerlink" title="Pytorch"></a>Pytorch</h3><p>安装 <code>CUDA</code> 版 <code>pytorch</code> 时，会安装一个不完整的 <code>CUDA Toolkit</code>，<code>pytorch</code> 中可以调用 GPU 也是因为这个原因。<br>这个不完整的包主要包含在使用 <code>CUDA</code> 相关功能时所依赖的动态链接库，但不会安装底层的驱动程序和编译工具等。  </p>
+<p>因此，如果只使用 <code>pytorch</code> 编写深度学习应用，可以不用单独安装 <code>CUDA Toolkit</code>，而是在安装完底层驱动后，直接在 <code>conda</code> 创建的环境中安装 <code>pytorch</code> 以及相应的 <code>CUDA</code> 包即可。此时对于 <code>CUDA</code> 版本的选择与安装 <code>CUDA Toolkit</code> 时一致：  </p>
+<ul>
+<li>一方面，版本需要低于 <code>CUDA Driver</code> 版本。  </li>
+<li>另一方面，版本需要支持 GPU 的计算能力。</li>
+</ul>
+<p>而如果使用 <code>C++</code> 编写 <code>CUDA</code> 程序（<code>.cu</code> 文件），则需要安装 <code>NVIDIA Driver</code> 和完整的 <code>CUDA Toolkit</code>，并使用 <code>nvcc</code> 进行编译。</p>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.nvidia.com/cuda/cuda-c-programming-guide/">CUDA C++ Programming Guide</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/tongjingqi_/article/details/129461512">图文并茂讲解CUDA, CUDA Toolkit, CUDA Driver, CUDA Runtime, nvcc之间的关系及其版本兼容性</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/marsggbo/p/11838823.html">显卡，显卡驱动,nvcc, cuda driver,cudatoolkit,cudnn到底是什么？</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CUDA/" class="print-no-link">#CUDA</a>
+      
+        <a href="/tags/GPU/" class="print-no-link">#GPU</a>
+      
+        <a href="/tags/pytorch/" class="print-no-link">#pytorch</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CUDA 软件栈</div>
+      <div>https://kaysonyu.github.io/2024/12/DL-Env-Conf/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yu Kang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 23, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/C_CXX_Compiler/" title="C/C++编译知识">
+                        <span class="hidden-mobile">C/C++编译知识</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","appKey":"gTiuzqlKBUteFsFrdlr8hsTh","path":"window.location.pathname","placeholder":"Please leave your comment.","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
