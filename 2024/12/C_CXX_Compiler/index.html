@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yu Kang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="使用 GCC123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263kang@pro:~$ gcc --helpUsage: gcc [options] file...Options:  -pass-exit-codes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C&#x2F;C++编译知识">
+<meta property="og:url" content="https://kaysonyu.github.io/2024/12/C_CXX_Compiler/index.html">
+<meta property="og:site_name" content="Kang">
+<meta property="og:description" content="使用 GCC123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263kang@pro:~$ gcc --helpUsage: gcc [options] file...Options:  -pass-exit-codes">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kaysonyu.github.io/img/C_CXX_Compiler/img-C_CXX_Compiler.png">
+<meta property="og:image" content="https://kaysonyu.github.io/img/C_CXX_Compiler/img-C_CXX_Compiler-2.png">
+<meta property="og:image" content="https://kaysonyu.github.io/img/C_CXX_Compiler/img-C_CXX_Compiler-1.png">
+<meta property="og:image" content="https://kaysonyu.github.io/img/C_CXX_Compiler/img-C_CXX_Compiler-3.png">
+<meta property="article:published_time" content="2024-12-09T05:04:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T06:30:07.666Z">
+<meta property="article:author" content="Yu Kang">
+<meta property="article:tag" content="GCC">
+<meta property="article:tag" content="GNU">
+<meta property="article:tag" content="lib">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kaysonyu.github.io/img/C_CXX_Compiler/img-C_CXX_Compiler.png">
+  
+  
+  
+  <title>C/C++编译知识 - Kang</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kaysonyu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","app_key":"gTiuzqlKBUteFsFrdlr8hsTh","server_url":"https://pppxp5yi.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Kang" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C/C++编译知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-09 13:04" pubdate>
+          December 9, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          23 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C/C++编译知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="使用-GCC"><a href="#使用-GCC" class="headerlink" title="使用 GCC"></a>使用 GCC</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs sh">kang@pro:~$ gcc --<span class="hljs-built_in">help</span><br>Usage: gcc [options] file...<br>Options:<br>  -pass-exit-codes         Exit with highest error code from a phase.<br>  --<span class="hljs-built_in">help</span>                   Display this information.<br>  --target-help            Display target specific <span class="hljs-built_in">command</span> line options (including assembler and linker options).<br>  --<span class="hljs-built_in">help</span>=&#123;common|optimizers|params|target|warnings|[^]&#123;joined|separate|undocumented&#125;&#125;[,...].<br>                           Display specific types of <span class="hljs-built_in">command</span> line options.<br>  (Use <span class="hljs-string">&#x27;-v --help&#x27;</span> to display <span class="hljs-built_in">command</span> line options of sub-processes).<br>  --version                Display compiler version information.<br>  -dumpspecs               Display all of the built <span class="hljs-keyword">in</span> spec strings.<br>  -dumpversion             Display the version of the compiler.<br>  -dumpmachine             Display the compiler<span class="hljs-string">&#x27;s target processor.</span><br><span class="hljs-string">  -foffload=&lt;targets&gt;      Specify offloading targets.</span><br><span class="hljs-string">  -print-search-dirs       Display the directories in the compiler&#x27;</span>s search path.<br>  -print-libgcc-file-name  Display the name of the compiler<span class="hljs-string">&#x27;s companion library.</span><br><span class="hljs-string">  -print-file-name=&lt;lib&gt;   Display the full path to library &lt;lib&gt;.</span><br><span class="hljs-string">  -print-prog-name=&lt;prog&gt;  Display the full path to compiler component &lt;prog&gt;.</span><br><span class="hljs-string">  -print-multiarch         Display the target&#x27;</span>s normalized GNU triplet, used as<br>                           a component <span class="hljs-keyword">in</span> the library path.<br>  -print-multi-directory   Display the root directory <span class="hljs-keyword">for</span> versions of libgcc.<br>  -print-multi-lib         Display the mapping between <span class="hljs-built_in">command</span> line options and<br>                           multiple library search directories.<br>  -print-multi-os-directory Display the relative path to OS libraries.<br>  -print-sysroot           Display the target libraries directory.<br>  -print-sysroot-headers-suffix Display the sysroot suffix used to find headers.<br>  -Wa,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the assembler.<br>  -Wp,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the preprocessor.<br>  -Wl,&lt;options&gt;            Pass comma-separated &lt;options&gt; on to the linker.<br>  -Xassembler &lt;arg&gt;        Pass &lt;arg&gt; on to the assembler.<br>  -Xpreprocessor &lt;arg&gt;     Pass &lt;arg&gt; on to the preprocessor.<br>  -Xlinker &lt;arg&gt;           Pass &lt;arg&gt; on to the linker.<br>  -save-temps              Do not delete intermediate files.<br>  -save-temps=&lt;arg&gt;        Do not delete intermediate files.<br>  -no-canonical-prefixes   Do not canonicalize paths when building relative<br>                           prefixes to other gcc components.<br>  -pipe                    Use pipes rather than intermediate files.<br>  -time                    Time the execution of each subprocess.<br>  -specs=&lt;file&gt;            Override built-in specs with the contents of &lt;file&gt;.<br>  -std=&lt;standard&gt;          Assume that the input sources are <span class="hljs-keyword">for</span> &lt;standard&gt;.<br>  --sysroot=&lt;directory&gt;    Use &lt;directory&gt; as the root directory <span class="hljs-keyword">for</span> headers<br>                           and libraries.<br>  -B &lt;directory&gt;           Add &lt;directory&gt; to the compiler<span class="hljs-string">&#x27;s search paths.</span><br><span class="hljs-string">  -v                       Display the programs invoked by the compiler.</span><br><span class="hljs-string">  -###                     Like -v but options quoted and commands not executed.</span><br><span class="hljs-string">  -E                       Preprocess only; do not compile, assemble or link.</span><br><span class="hljs-string">  -S                       Compile only; do not assemble or link.</span><br><span class="hljs-string">  -c                       Compile and assemble, but do not link.</span><br><span class="hljs-string">  -o &lt;file&gt;                Place the output into &lt;file&gt;.</span><br><span class="hljs-string">  -pie                     Create a dynamically linked position independent</span><br><span class="hljs-string">                           executable.</span><br><span class="hljs-string">  -shared                  Create a shared library.</span><br><span class="hljs-string">  -x &lt;language&gt;            Specify the language of the following input files.</span><br><span class="hljs-string">                           Permissible languages include: c c++ assembler none</span><br><span class="hljs-string">                           &#x27;</span>none<span class="hljs-string">&#x27; means revert to the default behavior of</span><br><span class="hljs-string">                           guessing the language based on the file&#x27;</span>s extension.<br><br>Options starting with -g, -f, -m, -O, -W, or --param are automatically<br> passed on to the various sub-processes invoked by gcc.  In order to pass<br> other options on to these processes the -W&lt;letter&gt; options must be used.<br><br>For bug reporting instructions, please see:<br>&lt;file:///usr/share/doc/gcc-13/README.Bugs&gt;.<br></code></pre></td></tr></table></figure>
+
+<p>一些参数可以单独使用，此时可以将单字母粘连，比如 <code>-c -g</code> 等价于 <code>-cg</code>；<br>一些参数后要跟特定的值，可以用 <code>=</code>、空格、粘连赋值，比如 <code>gcc -Iinclude1 -I=include2 -I include3</code>（但也有可能一些参数只能遵循特定的形式）。</p>
+<p>常用的参数项</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sh">-I/xxx      <span class="hljs-comment"># 指定头文件搜索目录</span><br>-L/xxx      <span class="hljs-comment"># 指定库文件搜索目录</span><br>-l/xxx      <span class="hljs-comment"># 链接库文件</span><br><br>-c          <span class="hljs-comment"># 只编译和汇编，不链接，生成目标文件(.o)</span><br>-S          <span class="hljs-comment"># 只编译，不汇编，生成汇编代码文件(.S)</span><br><br>-g          <span class="hljs-comment"># 生成调试信息</span><br>-Wall       <span class="hljs-comment"># 打开几乎所有警告信息</span><br>-O&lt;level&gt;   <span class="hljs-comment"># 设置优化等级</span><br>-std=c11    <span class="hljs-comment"># 指定使用的C语言标准</span><br>-fPIC       <span class="hljs-comment"># 生成位置无关代码</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="多文件"><a href="#多文件" class="headerlink" title="多文件"></a>多文件</h2><p>多文件编译，其实就是将每个文件编译后的 <code>.o</code> 文件链接后的产物，所以在 <code>make</code> 中会像下面一样，将每个部分单独写出来，这样修改时未被更改的部分无需重复编译（可以利用通配符在 <code>Makefile</code> 中进一步进行抽象）。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-section">main: main.o hello.o</span><br>  gcc main.o hello.o -o main<br><span class="hljs-section">main.o: main.c</span><br>  gcc -c main.c -o main.o<br><span class="hljs-section">hello.o: hello.c</span><br>  gcc -c hello.c -o hello.o<br><br><span class="hljs-comment"># 进一步抽象描述</span><br>CC = gcc<br>SRC = main.c hello.c<br>OBJ = $(SRC:.c=.o)<br><span class="hljs-section">main: <span class="hljs-variable">$(OBJ)</span></span><br>  <span class="hljs-variable">$(CC)</span> <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br><span class="hljs-section">%.o: %.c</span><br>  <span class="hljs-variable">$(CC)</span> -c <span class="hljs-variable">$^</span> -o <span class="hljs-variable">$@</span><br></code></pre></td></tr></table></figure>
+
+<p><code>#include</code> 如果是 <code>&quot;&quot;</code>，则会先在当前目录查找，失败后才会在系统路径查找；<br>如果是 <code>&lt;&gt;</code>，则直接在系统路径中查找。<br>在编译时指定的 <code>-I</code>，与系统目录等价，所以也可以被 <code>&lt;&gt;</code> 发现，借此避免使用冗长的相对路径格式。<br>虽然编译时正确找到头文件，但是代码补全插件找不到，写代码不舒服。不过既然编译没问题，可以在编译时将头文件目录这种要求搞成一个配置文件，也就是 <code>compile_commands.json</code> 文件。直接通过 <code>Makefile</code> 构建的，可以通过 <code>Bear</code> 生成该文件；通过 <code>CMake</code> 配置的，可以加一个配置选项 <code>-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code>，在 <code>build</code> 目录即可生成该文件。</p>
+<h2 id="链接库"><a href="#链接库" class="headerlink" title="链接库"></a>链接库</h2><h3 id="下载使用第三方库"><a href="#下载使用第三方库" class="headerlink" title="下载使用第三方库"></a>下载使用第三方库</h3><p>一般引用第三方库是通过包管理器(<code>apt</code> 等)下载相应的包，由于 <code>apt</code> 会下载到系统路径，所以编写代码时可以直接 <code>#include</code> 相应第三方库的头文件，而在编译时同样需要链接第三方库。<br>因为头文件的作用是让我们复制一边声明，真正的库实现需要编译时手动链接。<br>比如在 <code>C++</code> 中使用 <code>fmt</code> 库，通过 <code>-lfmt</code> 链接该库。<br><img src="/img/C_CXX_Compiler/img-C_CXX_Compiler.png" srcset="/img/loading.gif" lazyload></p>
+<p>因为链接时还需要添加上具体的库名，不手动去看并不知道有哪些，此时可以通过 <code>pkg-config</code> 获取一个包的库名字等。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 获得库的链接参数</span><br>kang@pro:~$ pkg-config libgvc --libs<br>-lgvc -lcgraph -lcdt<br><br><span class="hljs-comment"># 获得头文件目录的链接参数</span><br>kang@pro:~$ pkg-config libgvc --cflags<br>-I/usr/include/graphviz <br></code></pre></td></tr></table></figure>
+<p>以上返回是由包中的 <code>pkgconfig</code> 目录中的内容决定的。<br><img src="/img/C_CXX_Compiler/img-C_CXX_Compiler-2.png" srcset="/img/loading.gif" lazyload></p>
+<p>链接多个 <code>.o</code> 文件和库文件时，放置顺序会影响结果。目标文件的未定义符号，只会在它后面的目标文件或库中寻找，不会再看前面的。所以，<strong>被依赖的要放在后面</strong>。</p>
+<h3 id="包的组成"><a href="#包的组成" class="headerlink" title="包的组成"></a>包的组成</h3><p>一个第三方库大致有以下部分:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 有些本身是工具库存在的可能没有 bin/; 同样的，一些主要提供可执行程序直接使用的可能没有 include/</span><br>.<br>|- bin      <span class="hljs-comment"># 可执行文件</span><br>|- include  <span class="hljs-comment"># 头文件</span><br>|- lib      <span class="hljs-comment"># 静态库和动态库</span><br>|_ share    <span class="hljs-comment"># 文档等</span><br></code></pre></td></tr></table></figure>
+<p>而直接安装一个第三方库，比如 <code>Ubuntu</code> 下的 <code>deb</code> 包，安装后以上文件会自动放入对应的系统路径 <code>/usr/xxx</code> 中，而在编译器编译时，这些路径会进行默认搜索，所以头文件可以直接找到，库文件也直接写名字即可链接。<br>而如果放在一个一般路径，在编译时则需要指定相应目录。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># -I 指定头文件目录; -L 指定库文件目录; -l 指定库名字</span><br>g++ main.c -I/xxx/include -L/xxx/lib -lfmt -o main<br></code></pre></td></tr></table></figure>
+<p>对于 <code>gcc</code>，可以通过以下命令查看默认搜索的头文件目录和库目录。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 打印出gcc自身安装目录和库搜索目录等</span><br>kang@pro:~$ gcc -print-search-dirs <br>install: /usr/lib/gcc/x86_64-linux-gnu/13/<br>programs: =/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/bin/<br>libraries: =/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/13/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/13/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/<br><br><span class="hljs-comment"># -E 预处理; -v 详细输出; - 从标准输入读取; </span><br><span class="hljs-comment"># 用一个空内容，查看预处理阶段会进行哪些操作，可以发现默认的头搜索目录</span><br>kang@pro:~$ gcc -E -v - &lt; /dev/null<br>Using built-in specs.<br>COLLECT_GCC=gcc<br>OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa<br>OFFLOAD_TARGET_DEFAULT=1<br>Target: x86_64-linux-gnu<br>Configured with: ../src/configure -v --with-pkgversion=<span class="hljs-string">&#x27;Ubuntu 13.2.0-23ubuntu4&#x27;</span> --with-bugurl=file:///usr/share/doc/gcc-13/README.Bugs --enable-languages=c,ada,c++,go,d,fortran,objc,obj-c++,m2 --prefix=/usr --with-gcc-major-version-only --program-suffix=-13 --program-prefix=x86_64-linux-gnu- --enable-shared --enable-linker-build-id --libexecdir=/usr/libexec --without-included-gettext --enable-threads=posix --libdir=/usr/lib --enable-nls --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=<span class="hljs-built_in">yes</span> --with-default-libstdcxx-abi=new --enable-libstdcxx-backtrace --enable-gnu-unique-object --disable-vtable-verify --enable-plugin --enable-default-pie --with-system-zlib --enable-libphobos-checking=release --with-target-system-zlib=auto --enable-objc-gc=auto --enable-multiarch --disable-werror --enable-cet --with-arch-32=i686 --with-abi=m64 --with-multilib-list=m32,m64,mx32 --enable-multilib --with-tune=generic --enable-offload-targets=nvptx-none=/build/gcc-13-uJ7kn6/gcc-13-13.2.0/debian/tmp-nvptx/usr,amdgcn-amdhsa=/build/gcc-13-uJ7kn6/gcc-13-13.2.0/debian/tmp-gcn/usr --enable-offload-defaulted --without-cuda-driver --enable-checking=release --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu<br>Thread model: posix<br>Supported LTO compression algorithms: zlib zstd<br>gcc version 13.2.0 (Ubuntu 13.2.0-23ubuntu4) <br>COLLECT_GCC_OPTIONS=<span class="hljs-string">&#x27;-E&#x27;</span> <span class="hljs-string">&#x27;-v&#x27;</span> <span class="hljs-string">&#x27;-mtune=generic&#x27;</span> <span class="hljs-string">&#x27;-march=x86-64&#x27;</span><br> /usr/libexec/gcc/x86_64-linux-gnu/13/cc1 -E -quiet -v -imultiarch x86_64-linux-gnu - -mtune=generic -march=x86-64 -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -dumpbase -<br>ignoring nonexistent directory <span class="hljs-string">&quot;/usr/local/include/x86_64-linux-gnu&quot;</span><br>ignoring nonexistent directory <span class="hljs-string">&quot;/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed/x86_64-linux-gnu&quot;</span><br>ignoring nonexistent directory <span class="hljs-string">&quot;/usr/lib/gcc/x86_64-linux-gnu/13/include-fixed&quot;</span><br>ignoring nonexistent directory <span class="hljs-string">&quot;/usr/lib/gcc/x86_64-linux-gnu/13/../../../../x86_64-linux-gnu/include&quot;</span><br><span class="hljs-comment">#include &quot;...&quot; search starts here:</span><br><span class="hljs-comment">#include &lt;...&gt; search starts here:</span><br> /usr/lib/gcc/x86_64-linux-gnu/13/include<br> /usr/local/include<br> /usr/include/x86_64-linux-gnu<br> /usr/include<br>End of search list.<br><span class="hljs-comment"># 0 &quot;&lt;stdin&gt;&quot;</span><br><span class="hljs-comment"># 0 &quot;&lt;built-in&gt;&quot;</span><br><span class="hljs-comment"># 0 &quot;&lt;command-line&gt;&quot;</span><br><span class="hljs-comment"># 1 &quot;/usr/include/stdc-predef.h&quot; 1 3 4</span><br><span class="hljs-comment"># 0 &quot;&lt;command-line&gt;&quot; 2</span><br><span class="hljs-comment"># 1 &quot;&lt;stdin&gt;&quot;</span><br>COMPILER_PATH=/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/13/:/usr/libexec/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/<br>LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/13/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/13/../../../:/lib/:/usr/lib/<br>COLLECT_GCC_OPTIONS=<span class="hljs-string">&#x27;-E&#x27;</span> <span class="hljs-string">&#x27;-v&#x27;</span> <span class="hljs-string">&#x27;-mtune=generic&#x27;</span> <span class="hljs-string">&#x27;-march=x86-64&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>对于开源的第三方库（以及要编写自己的开源项目的话），可以通过更改配置来自定义编译的结果。在编译很多项目时，往往会经历 <code>configure-&gt;make-&gt;make install</code> 三部曲（很像使用 <code>CMake</code> 的流程，相比之下 <code>CMake</code> 新多了）。<br>在用户视角下，首先我们要运行开发者提供的 <code>configure</code> 脚本，如下图所示，这个过程会生成 <code>Makefile</code> 文件，用户可以选择加参数自定义配置，比如 <code>./configure -prefix=/xxx</code>；<br><img src="/img/C_CXX_Compiler/img-C_CXX_Compiler-1.png" srcset="/img/loading.gif" lazyload><br>随后，利用 <code>Makefile</code> 文件进行构建，并将软件安装到对应的位置。<br>开发者可以使用 GNU 构建系统（GNU Build System）来构建支持以上流程的软件体系，包含三件套：<code>autoconf</code>, <code>antomake</code> 和 <code>libtool</code>.  </p>
+<h2 id="运行时库"><a href="#运行时库" class="headerlink" title="运行时库"></a>运行时库</h2><p>为了提升C语言的开发效率，C语言标准定义了一系列常用的函数，这些函数统称为C库函数。C标准仅规定了这些函数的原型，而具体的实现则留给了各个支持C语言标准的编译器。因此，每个编译器通常会提供超出标准C的实现，形成了所谓的<strong>C运行时库</strong>（C Run Time Library）。<br>C运行时库中的启动函数负责程序的初始化工作，包括设置堆栈、初始化全局和静态变量、调用构造函数等；程序结束时，运行时库也负责调用析构函数、释放资源等清理工作。所以，C程序都需要链接C运行时库。<br>与C语言类似，C++也有自己的标准，并提供了相应的支持库，即C++运行时库或C++标准库。由于C++设计时考虑了与C语言的兼容性，C++标准库不仅包含了C标准库，还扩展了包括标准模板库（STL）在内的更多功能。</p>
+<p>通过 <code>ldd</code> 可以列出可执行文件或共享库所依赖的共享库。<br><img src="/img/C_CXX_Compiler/img-C_CXX_Compiler-3.png" srcset="/img/loading.gif" lazyload><br>可以看出，默认情况下一个简单的C程序会动态链接 <code>libc.so.6</code>，我们也可以指定静态链接，此时无需依赖运行时库，但文件体积也相应增大。</p>
+<p>参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1J14y1D7Sw">【技术杂谈】C编译体系</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ranson7zop/p/8259987.html">GNU构建系统和Autotool</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/jigetage/article/details/80619386">终于理解了什么是c&#x2F;c++运行时库，以及libcmt msvcrt等内容</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GCC/" class="print-no-link">#GCC</a>
+      
+        <a href="/tags/GNU/" class="print-no-link">#GNU</a>
+      
+        <a href="/tags/lib/" class="print-no-link">#lib</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C/C++编译知识</div>
+      <div>https://kaysonyu.github.io/2024/12/C_CXX_Compiler/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yu Kang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>December 9, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/01/TemplateMetaprogramming/" title="C/C++ 模板元编程学习">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C/C++ 模板元编程学习</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/How_to_use_CMake/" title="如何使用 CMake">
+                        <span class="hidden-mobile">如何使用 CMake</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","appKey":"gTiuzqlKBUteFsFrdlr8hsTh","path":"window.location.pathname","placeholder":"Please leave your comment.","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
