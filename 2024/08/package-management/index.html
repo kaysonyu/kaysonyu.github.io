@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yu Kang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="APTAPT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。 常用命令： 123456789101112131415161718192021222324# 列出所有可更新的软件清单命令sudo apt update# 升级软件包sudo apt upgrade# 列出可更新的软件包及版本信息apt list --upgradable# 列出所有已安装的包ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu包管理">
+<meta property="og:url" content="https://kaysonyu.github.io/2024/08/package-management/index.html">
+<meta property="og:site_name" content="Kang">
+<meta property="og:description" content="APTAPT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。 常用命令： 123456789101112131415161718192021222324# 列出所有可更新的软件清单命令sudo apt update# 升级软件包sudo apt upgrade# 列出可更新的软件包及版本信息apt list --upgradable# 列出所有已安装的包ap">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-01T05:50:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T06:20:29.956Z">
+<meta property="article:author" content="Yu Kang">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="apt">
+<meta property="article:tag" content="dpkg">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Ubuntu包管理 - Kang</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kaysonyu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","app_key":"gTiuzqlKBUteFsFrdlr8hsTh","server_url":"https://pppxp5yi.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Kang" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ubuntu包管理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-01 13:50" pubdate>
+          August 1, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Ubuntu包管理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="APT"><a href="#APT" class="headerlink" title="APT"></a>APT</h1><p>APT 是基于 Ubuntu&#x2F;Debian 的 Linux 发行版上的默认包管理器。</p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 列出所有可更新的软件清单命令</span><br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-comment"># 升级软件包</span><br><span class="hljs-built_in">sudo</span> apt upgrade<br><span class="hljs-comment"># 列出可更新的软件包及版本信息</span><br>apt list --upgradable<br><span class="hljs-comment"># 列出所有已安装的包</span><br>apt list --installed<br><span class="hljs-comment"># 列出所有已安装的包的版本信息</span><br>apt list --all-versions<br><span class="hljs-comment"># 安装指定的软件命令</span><br><span class="hljs-built_in">sudo</span> apt install &lt;package_name&gt;<br><span class="hljs-comment"># 更新指定的软件命令</span><br><span class="hljs-built_in">sudo</span> apt update &lt;package_name&gt;<br><span class="hljs-comment"># 显示软件包具体信息,例如：版本号，安装大小，依赖关系等等</span><br><span class="hljs-built_in">sudo</span> apt show &lt;package_name&gt;<br><span class="hljs-comment"># 删除软件包命令</span><br><span class="hljs-built_in">sudo</span> apt remove &lt;package_name&gt;<br><span class="hljs-comment"># 清理不再使用的依赖和库文件</span><br><span class="hljs-built_in">sudo</span> apt autoremove<br><span class="hljs-comment"># 移除软件包及配置文件</span><br><span class="hljs-built_in">sudo</span> apt purge &lt;package_name&gt;<br><span class="hljs-comment"># 查找软件包命令</span><br><span class="hljs-built_in">sudo</span> apt search &lt;keyword&gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="软件包存储库"><a href="#软件包存储库" class="headerlink" title="软件包存储库"></a>软件包存储库</h1><p>Ubuntu 软件包存储库信息存储在 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list</strong> 文件中。第三方 PPA 和其他存储库作为 <strong>.list</strong> 文件存储在 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;</strong> 目录中。</p>
+<p>下面为 Ubuntu22.04LTS 的 <strong>&#x2F;etc&#x2F;apt&#x2F;sources.list</strong> 文件：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># See http://help.ubuntu.com/community/UpgradeNotes for how to upgrade to</span><br><span class="hljs-comment"># newer versions of the distribution.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy main restricted</span><br><br><span class="hljs-comment">## Major bug fix updates produced after the final release of the</span><br><span class="hljs-comment">## distribution.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates main restricted</span><br><br><span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span><br><span class="hljs-comment">## team. Also, please note that software in universe WILL NOT receive any</span><br><span class="hljs-comment">## review or updates from the Ubuntu security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy universe</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates universe</span><br><br><span class="hljs-comment">## N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu</span><br><span class="hljs-comment">## team, and may not be under a free licence. Please satisfy yourself as to</span><br><span class="hljs-comment">## your rights to use the software. Also, please note that software in</span><br><span class="hljs-comment">## multiverse WILL NOT receive any review or updates from the Ubuntu</span><br><span class="hljs-comment">## security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy multiverse</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-updates</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-updates multiverse</span><br><br><span class="hljs-comment">## N.B. software from this repository may not have been tested as</span><br><span class="hljs-comment">## extensively as that contained in the main release, although it includes</span><br><span class="hljs-comment">## newer versions of some applications which may provide useful features.</span><br><span class="hljs-comment">## Also, please note that software in backports WILL NOT receive any review</span><br><span class="hljs-comment">## or updates from the Ubuntu security team.</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://archive.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-backports</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span> <span class="hljs-string">universe</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://archive.ubuntu.com/ubuntu/ jammy-backports main restricted universe multiverse</span><br><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">main</span> <span class="hljs-string">restricted</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">universe</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security universe</span><br><span class="hljs-string">deb</span> <span class="hljs-string">http://security.ubuntu.com/ubuntu/</span> <span class="hljs-string">jammy-security</span> <span class="hljs-string">multiverse</span><br><span class="hljs-comment"># deb-src http://security.ubuntu.com/ubuntu/ jammy-security multiverse</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>deb-src deb</strong></p>
+<p><strong>deb-src</strong>: 包含软件源代码、版本修改说明、构建指令以及编译工具等。允许用户下载软件包的源代码，从而可以自己编译软件。这通常用于开发者或那些需要定制软件包或需要最新开发版本的用户。</p>
+<p><strong>deb</strong>: 包含可执行文件、库文件、配置文件、man&#x2F;info页面、版权声明和其它文档。提供了预先编译好的软件包，用户可以直接安装而无需自己编译。</p>
+<p><strong>jammy</strong>: Ubuntu22.04 代号</p>
+<ul>
+<li><p>Ubuntu 18.04 LTS bionic</p>
+</li>
+<li><p>Ubuntu 20.04 LTS focal</p>
+</li>
+<li><p>Ubuntu 22.04 LTS jammy</p>
+</li>
+<li><p>Ubuntu 24.04 LTS noble</p>
+</li>
+</ul>
+<p><strong>main restricted universe multiverse</strong> 软件包存储库</p>
+<ul>
+<li><p><strong>main</strong>: 保留了Ubuntu支持的自由和开源软件。</p>
+</li>
+<li><p><strong>restricted</strong>: 保留专有驱动程序（即 NVIDIA）。</p>
+</li>
+<li><p><strong>universe</strong>: 保留了社区维护的免费开源软件。</p>
+</li>
+<li><p><strong>multiverse</strong>: 保留有版权限制或法律问题的软件。</p>
+</li>
+</ul>
+<p><strong>jammy jammy-security jammy-backports jammy-updates jammy-proposed</strong> 不同分支</p>
+<ul>
+<li><p><strong>基础</strong>：由于ubuntu是每6个月发行一个新版，当发行后，所有软件包的版本在这六个月内将保持不变，即使是有新版都不更新。除开重要的安全补丁外，所有新功能和非安全性补丁将不会提供给用户更新。  </p>
+</li>
+<li><p><strong>security</strong>：仅修复漏洞，并且尽可能少的改变软件包的行为，低风险。</p>
+</li>
+<li><p><strong>backports</strong>：backports 的团队则认为最好的更新策略是 security 策略加上新版本的软件（包括候选版本的），但不会由Ubuntu security team审查和更新。</p>
+</li>
+<li><p><strong>updates</strong>：包含了针对特定版本的更新，这些更新是在原始版本发布之后提供的，可能包括安全修复、bug修复和一些较小的功能改进。  </p>
+</li>
+<li><p><strong>proposed</strong>：updates类的测试部分，仅建议提供测试和反馈的人进行安装。</p>
+</li>
+</ul>
+<h1 id="dpkg"><a href="#dpkg" class="headerlink" title="dpkg"></a>dpkg</h1><p>dpkg是Debian的一个底层包管理工具，主要用于对已下载到本地和已安装的软件包进行管理。</p>
+<p>常用命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh">dpkg -i &lt;package&gt;  <span class="hljs-comment"># 安装一个在本地文件系统上存在的Debian软件包</span><br>dpkg -r &lt;package&gt;  <span class="hljs-comment"># 移除一个已经安装的软件包</span><br>dpkg -P &lt;package&gt;  <span class="hljs-comment"># 移除已安装软件包及配置文件</span><br>dpkg -L &lt;package&gt;  <span class="hljs-comment"># 列出安装的软件包清单</span><br>dpkg -s &lt;package&gt;  <span class="hljs-comment"># 显出软件包的安装状态</span><br></code></pre></td></tr></table></figure>
+
+
+
+
+<p>参考：</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://forum.ubuntu.com.cn/viewtopic.php?f=77&t=253103">源中的 backports proposed security updates 的意思（已解决） - Ubuntu中文论坛</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-apt.html">Linux apt 命令 | 菜鸟教程 (runoob.com)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/challenglistic/article/details/127825934">Ubuntu 软件包管理工具 —— dkpg、apt（dpkg常用指令、apt 软件源的配置）-CSDN博客</a></p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
+      
+        <a href="/tags/apt/" class="print-no-link">#apt</a>
+      
+        <a href="/tags/dpkg/" class="print-no-link">#dpkg</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ubuntu包管理</div>
+      <div>https://kaysonyu.github.io/2024/08/package-management/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yu Kang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 1, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/install-Ubuntu/" title="Ubuntu安装记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Ubuntu安装记录</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/Shell/" title="Shell">
+                        <span class="hidden-mobile">Shell</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","appKey":"gTiuzqlKBUteFsFrdlr8hsTh","path":"window.location.pathname","placeholder":"Please leave your comment.","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

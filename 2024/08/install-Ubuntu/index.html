@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yu Kang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="安装Ubuntu系统（包含Nvidia驱动） CPU: i7-14700K 显卡: GeForce RTX 4060 Ti 16 g  U盘启动后选项如下：   失败记录： 选择Try or Install Ubuntu无法进入安装界面，一直停留在Ubuntu的加载界面； 选择Ubuntu(safe graphics)进入安装，但过程中失败，通过log发现有联网需求，之后操作选择使用有线网络； 重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu安装记录">
+<meta property="og:url" content="https://kaysonyu.github.io/2024/08/install-Ubuntu/index.html">
+<meta property="og:site_name" content="Kang">
+<meta property="og:description" content="安装Ubuntu系统（包含Nvidia驱动） CPU: i7-14700K 显卡: GeForce RTX 4060 Ti 16 g  U盘启动后选项如下：   失败记录： 选择Try or Install Ubuntu无法进入安装界面，一直停留在Ubuntu的加载界面； 选择Ubuntu(safe graphics)进入安装，但过程中失败，通过log发现有联网需求，之后操作选择使用有线网络； 重">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kaysonyu.github.io/img/install-Ubuntu/img-install-Ubuntu.png">
+<meta property="og:image" content="https://kaysonyu.github.io/img/install-Ubuntu/img-install-Ubuntu-1.png">
+<meta property="og:image" content="https://kaysonyu.github.io/img/install-Ubuntu/img-install-Ubuntu-2.png">
+<meta property="article:published_time" content="2024-08-06T05:30:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T06:20:29.956Z">
+<meta property="article:author" content="Yu Kang">
+<meta property="article:tag" content="zsh">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="Nvidia">
+<meta property="article:tag" content="Snap">
+<meta property="article:tag" content="Gnome">
+<meta property="article:tag" content="kernel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kaysonyu.github.io/img/install-Ubuntu/img-install-Ubuntu.png">
+  
+  
+  
+  <title>Ubuntu安装记录 - Kang</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kaysonyu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","app_key":"gTiuzqlKBUteFsFrdlr8hsTh","server_url":"https://pppxp5yi.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Kang" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ubuntu安装记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-06 13:30" pubdate>
+          August 6, 2024 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Ubuntu安装记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="安装Ubuntu系统（包含Nvidia驱动）"><a href="#安装Ubuntu系统（包含Nvidia驱动）" class="headerlink" title="安装Ubuntu系统（包含Nvidia驱动）"></a>安装Ubuntu系统（包含Nvidia驱动）</h1><blockquote>
+<p>CPU: i7-14700K</p>
+<p>显卡: GeForce RTX 4060 Ti 16 g</p>
+</blockquote>
+<p>U盘启动后选项如下：</p>
+<p><img src="/img/install-Ubuntu/img-install-Ubuntu.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>失败记录：</p>
+<p>选择<code>Try or Install Ubuntu</code>无法进入安装界面，一直停留在Ubuntu的加载界面；</p>
+<p>选择<code>Ubuntu(safe graphics)</code>进入安装，但过程中失败，通过log发现有联网需求，之后操作选择使用有线网络；</p>
+<p>重复几次后，突然前两种安装+是否添加<code>nomodeset</code>共四种方法均无法成功安装，选择清空硬盘和U盘并重制启动U盘；</p>
+<p>安装Ubuntu后再次启动一直黑屏无反应，后来将HDMI从显卡换到主板上解决。</p>
+</blockquote>
+<p>步骤：</p>
+<p>由于采用双硬盘双系统的安装策略，所以先拔掉装有Windows的硬盘，防止EFI装在同一块硬盘上。</p>
+<p>选择<code>Ubuntu(safe graphics)</code>，按<code>E</code>进入配置，在<code>quiet splash</code>后面添加<code>nomodeset</code>参数，之后按<code>F10</code>进入Ubuntu 24.04的安装。</p>
+<blockquote>
+<p><code>nouveau</code>是通过逆向得到的非官方的Nvidia驱动，该驱动可能在一些较新的显卡上工作不正常，通过<code>nomodeset</code>来禁止加载该驱动，防止引导时黑屏。</p>
+</blockquote>
+<p>安装后重启拔掉U盘，此时将HDMI换到主板相应接口，否则一直黑屏。</p>
+<blockquote>
+<p>此处针对黑屏的参考资料中提到同样在Ubuntu引导界面进行如上屏蔽<code>nouveau</code>的操作后可以正常进入，但我也没有显示引导界面，完全黑屏，换到主板接口后则无需操作的正常进入系统。</p>
+</blockquote>
+<p>进入系统后需要完全禁止<code>nouveau</code>，使得之后可以自动屏蔽该驱动。之后重启，可以将HDMI重新接到显卡接口。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 编辑黑名单文件</span><br><span class="hljs-built_in">sudo</span> nano /etc/modprobe.d/blacklist.conf<br><span class="hljs-comment"># 在末尾添加如下条目</span><br>blacklist nouveau<br><span class="hljs-comment"># 使黑名单生效</span><br><span class="hljs-built_in">sudo</span> update-initramfs -u<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装Nvidia官方驱动之前可以先检查是否会更换内核版本，我的版本中无线网卡未成功工作，升级了Linux内核版本，但由于安装后的Nvidia驱动在切换版本后不生效，所以后来进行了卸载重装，具体留在无线网卡部分。</p>
+</blockquote>
+<p>之后安装Nvidia官方驱动，在官网下载对应显卡的驱动程序。此时直接运行会遇到各种问题：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 问题</span><br>WARNING: Unable to find suitable destination to install 32-bit compatibility libraries<br><span class="hljs-comment"># 解决</span><br><span class="hljs-built_in">sudo</span> dpkg --add-architecture i386<br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install libc6:i386<br><br><span class="hljs-comment"># 问题</span><br>An incomplete installation of libglvnd was found.                   <br>All of the essential libglvnd libraries are present, but one or more optional  components are missing.<br>Do you want to install a full copy of libglvnd? This will overwrite any existing libglvnd libraries.<br><span class="hljs-comment"># 解决</span><br><span class="hljs-built_in">sudo</span> apt install libglvnd-dev<br><br><span class="hljs-comment"># 问题</span><br>WARNING: Unable to determine the path to install the libglvnd EGL vendor library config files.<br>Check that you have pkg-config and the libglvnd development libraries installed, or specify a path with --glvnd-egl-config-path.<br><span class="hljs-comment"># 解决</span><br><span class="hljs-built_in">sudo</span> apt install pkg-config<br></code></pre></td></tr></table></figure>
+
+<p>所以安装前先进行下载：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> dpkg --add-architecture i386<br><span class="hljs-built_in">sudo</span> apt update<br><span class="hljs-built_in">sudo</span> apt install libc6:i386<br><span class="hljs-built_in">sudo</span> apt install build-essential libglvnd-dev pkg-config<br><span class="hljs-comment"># 停止当前显示服务器</span><br><span class="hljs-built_in">sudo</span> telinit 3<br><span class="hljs-comment"># 运行驱动安装</span><br><span class="hljs-built_in">sudo</span> bash NVIDIA-Linux-x86_64-550.107.02.run<br><span class="hljs-comment"># 重启</span><br><span class="hljs-built_in">sudo</span> reboot<br></code></pre></td></tr></table></figure>
+
+<p>驱动安装完成。</p>
+<p><img src="/img/install-Ubuntu/img-install-Ubuntu-1.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h1><p>在 <code>Settings</code> 的 <code>Region &amp; Language</code> 中安装汉语，应用并重启。</p>
+<p>在<code>Keyboard</code>中添加拼音键入。</p>
+<h1 id="卸载snap（安装Chrome）"><a href="#卸载snap（安装Chrome）" class="headerlink" title="卸载snap（安装Chrome）"></a>卸载snap（安装Chrome）</h1><p>先安装Chrome（之后需要卸载snap版的Firefox），下载deb包，调用<code>sudo dpkg -i xxx.deb</code>安装即可。</p>
+<p>卸载snap：</p>
+<p>删除已安装的 Snap 软件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 多执行几次</span><br><span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> $(snap list | awk <span class="hljs-string">&#x27;&#123;print $1&#125;&#x27;</span>); <span class="hljs-keyword">do</span><br>    <span class="hljs-built_in">sudo</span> snap remove <span class="hljs-variable">$p</span><br><span class="hljs-keyword">done</span><br><br><span class="hljs-comment"># 成功效果</span><br>snaps are installed yet. Try <span class="hljs-string">&#x27;snap install hello-world&#x27;</span>.  <br></code></pre></td></tr></table></figure>
+
+<p>（删除 Snap 的 Core 文件）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> systemctl stop snapd                                           <br><span class="hljs-built_in">sudo</span> systemctl <span class="hljs-built_in">disable</span> --now snapd.socket<br><span class="hljs-keyword">for</span> m <span class="hljs-keyword">in</span> /snap/core/*; <span class="hljs-keyword">do</span><br>   <span class="hljs-built_in">sudo</span> umount <span class="hljs-variable">$m</span><br><span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<p>删除 Snap 管理工具</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> apt autoremove --purge snapd<br></code></pre></td></tr></table></figure>
+
+<p>删除 Snap 的目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">rm</span> -rf ~/snap                                                       <br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /snap<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /var/snap<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /var/lib/snapd<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> -rf /var/cache/snapd<br></code></pre></td></tr></table></figure>
+
+<p>禁止 apt 安装 snapd</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">sudo</span> nano /etc/apt/preferences.d/no-snapd.pref<br><span class="hljs-comment"># 文件内容</span><br>Package: snapd                                                     <br>Pin: release a=*<br>Pin-Priority: -10<br></code></pre></td></tr></table></figure>
+
+<h1 id="安装Clash"><a href="#安装Clash" class="headerlink" title="安装Clash"></a>安装Clash</h1><p>Clash_for_Windows资源站：<a target="_blank" rel="noopener" href="https://archive.org/download/clash_for_windows_pkg">https://archive.org/download/clash_for_windows_pkg</a></p>
+<p>下载并解压</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -zxvf Clash.for.Windows-0.18.5-x64-linux.tar.gz<br><span class="hljs-built_in">mv</span> Clash.for.Windows-0.18.5-x64-linux clash<br><span class="hljs-built_in">cd</span> Clash<br>./cfw<br></code></pre></td></tr></table></figure>
+
+<p>导入订阅</p>
+<p>设置系统代理</p>
+<p><img src="/img/install-Ubuntu/img-install-Ubuntu-2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="美化主题"><a href="#美化主题" class="headerlink" title="美化主题"></a>美化主题</h1><p>美化项：</p>
+<ul>
+<li><p>图标主题：更改图标主题将更改应用程序图标的外观，最好选择支持各种应用程序的图标主题，否则可能会看到一些图标外观保持不变甚至看起来不合适。</p>
+</li>
+<li><p>GTK 主题：GTK 是用于构建应用程序的图形用户界面的框架。基本上，它决定了应用程序界面的外观（前提是这个应用程序是 GTK 应用程序，大部分的系统应用程序都是 GTK 应用程序）。</p>
+</li>
+<li><p>GNOME Shell 主题：更改 GNOME Shell 主题将更改 Shell 元素，例如顶部面板、活动概览、桌面通知等。</p>
+</li>
+<li><p>光标主题</p>
+</li>
+</ul>
+<p>环境安装：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 安装tweak工具，添加名为Tweak的应用程序，可以用来更改主题、图标等</span><br><span class="hljs-built_in">sudo</span> apt install gnome-tweaks<br><span class="hljs-comment"># 可以在chrome中下载gnome-shell扩展，https://extensions.gnome.org/</span><br><span class="hljs-built_in">sudo</span> apt install chrome-gnome-shell<br><span class="hljs-comment"># 添加名为Extensions的应用程序，可以进行gnome-shell扩展的管理与配置</span><br><span class="hljs-built_in">sudo</span> apt install gnome-shell-extensions<br></code></pre></td></tr></table></figure>
+
+<p>在扩展中，启用<code>User Themes</code>后可以在<code>Tweak</code>中进行Shell主题的更改，启动<code>Dash to Dock</code>后可以灵活美观的控制Dock栏。</p>
+<p>主题下载地址：<a target="_blank" rel="noopener" href="https://www.opendesktop.org/">https://www.opendesktop.org/</a></p>
+<p>存放位置：</p>
+<ul>
+<li><p>~&#x2F;.themes：GTK 主题，GNOME Shell 主题</p>
+</li>
+<li><p>~&#x2F;.icons：图标主题，光标主题</p>
+</li>
+</ul>
+<h1 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h1><p>安装Zsh并使用其作为Shell</p>
+<p>安装Zim并借助其安装p10k主题以及其他插件，见Shell文章</p>
+<h1 id="更换Linux内核"><a href="#更换Linux内核" class="headerlink" title="更换Linux内核"></a>更换Linux内核</h1><p>板载无线网卡无法使用，由<code>lshw</code>命令可以得到无线网卡品牌为<code>WCN785x Wi-Fi 7(802.11be) 320MHz 2x2 [FastConnect 7800]</code>，对比下面的以太网，该无线网卡没有合适的驱动程序。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># lshw</span><br>lshw -C network                                                          <br>WARNING: you should run this program as super-user.<br>  *-network                 <br>       description: Network controller<br>       product: WCN785x Wi-Fi 7(802.11be) 320MHz 2x2 [FastConnect 7800]<br>       vendor: Qualcomm Technologies, Inc<br>       physical <span class="hljs-built_in">id</span>: 0<br>       bus info: pci@0000:06:00.0<br>       version: 01<br>       width: 64 bits<br>       clock: 33MHz<br>       capabilities: bus_master cap_list<br>       configuration: driver=ath12k_pci latency=0<br>       resources: irq:204 memory:82200000-823fffff<br>  *-network<br>       description: Ethernet interface<br>       product: Ethernet Controller I225-V<br>       vendor: Intel Corporation<br>       physical <span class="hljs-built_in">id</span>: 0<br>       bus info: pci@0000:07:00.0<br>       logical name: enp7s0<br>       version: 03<br>       serial: d8:43:ae:79:a2:80<br>       size: 100Mbit/s<br>       capacity: 1Gbit/s<br>       width: 32 bits<br>       clock: 33MHz<br>       capabilities: bus_master cap_list ethernet physical tp 10bt 10bt-fd 100bt 100bt-fd 1000bt-fd autonegotiation<br>       configuration: autonegotiation=on broadcast=<span class="hljs-built_in">yes</span> driver=igc driverversion=6.8.0-39-generic duplex=full firmware=1073:8754 ip=192.168.1.2 latency=0 <span class="hljs-built_in">link</span>=<span class="hljs-built_in">yes</span> multicast=<span class="hljs-built_in">yes</span> port=twisted pair speed=100Mbit/s<br>       resources: irq:19 memory:82e00000-82efffff memory:82f00000-82f03fff<br>WARNING: output may be incomplete or inaccurate, you should run this program as super-user.<br><br><span class="hljs-comment"># dmesg</span><br><span class="hljs-built_in">sudo</span> dmesg<br>...<br>[    5.453515] ath12k_pci 0000:06:00.0: chip_id 0x2 chip_family 0x4 board_id 0xff soc_id 0x40170200<br>[    5.453526] ath12k_pci 0000:06:00.0: fw_version 0x100301e1 fw_build_timestamp 2023-12-06 04:05 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HMT.1.0.c5-00481-QCAHMTSWPL_V1.0_V2.0_SILICONZ-3<br>[    5.453650] ath12k_pci 0000:06:00.0: qmi failed to load regdb bin:<br>[    5.453653] ath12k_pci 0000:06:00.0: qmi failed to load regdb file:-2<br>...<br></code></pre></td></tr></table></figure>
+
+<p>通过查阅<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1513315/issue-with-wireless-network-connection-on-ubuntu-24-04-lts">相关问题</a>，得知可以通过更换最新稳定版的Linux内核（提供了相应的<code>Wi-Fi 7</code>的驱动）来解决。</p>
+<p>查看当前内核版本：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">uname</span> -r                                                            <br>6.8.0-39-generic<br></code></pre></td></tr></table></figure>
+
+<p>安装最新的稳定版内核：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 下载最新的稳定版内核</span><br>wget -c https://kernel.ubuntu.com/mainline/v6.10.2/amd64/linux-headers-6.10.2-061002_6.10.2-061002.202407271100_all.deb<br>wget -c https://kernel.ubuntu.com/mainline/v6.10.2/amd64/linux-headers-6.10.2-061002-generic_6.10.2-061002.202407271100_amd64.deb<br>wget -c https://kernel.ubuntu.com/mainline/v6.10.2/amd64/linux-image-unsigned-6.10.2-061002-generic_6.10.2-061002.202407271100_amd64.deb<br>wget -c https://kernel.ubuntu.com/mainline/v6.10.2/amd64/linux-modules-6.10.2-061002-generic_6.10.2-061002.202407271100_amd64.deb <br><br><span class="hljs-comment"># 安装</span><br><span class="hljs-built_in">sudo</span> dpkg -i *.deb<br><br><span class="hljs-comment"># 重启</span><br><span class="hljs-built_in">sudo</span> reboot<br><br><span class="hljs-comment"># 验证</span><br><span class="hljs-built_in">uname</span> -r<br>6.10.2-061002-generic<br></code></pre></td></tr></table></figure>
+
+<p>更换到<code>6.10.2</code>版本的内核后，可以搜索到无线网络，表明驱动正常工作。但是，<code>nvidia-smi</code>失败，更换Linux内核版本会导致Nvidia驱动发生问题，所以可以先选择合适的内核版本。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">nmcli device status<br>DEVICE          TYPE      STATE                   CONNECTION         <br>enp7s0          ethernet  connected               Wired connection 1 <br>wlp6s0          wifi      connected               TP-LINK_9B19       <br>lo              loopback  connected (externally)  lo                 <br>p2p-dev-wlp6s0  wifi-p2p  disconnected            --      <br></code></pre></td></tr></table></figure>
+
+<p>从当前存在的内核版本间切换：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 列出当前所有内核版本，每个menuentry项是一个内核</span><br><span class="hljs-built_in">sudo</span> grep menuentry /boot/grub/grub.cfg<br><span class="hljs-keyword">if</span> [ x<span class="hljs-string">&quot;<span class="hljs-variable">$&#123;feature_menuentry_id&#125;</span>&quot;</span> = xy ]; <span class="hljs-keyword">then</span><br>  menuentry_id_option=<span class="hljs-string">&quot;--id&quot;</span><br>  menuentry_id_option=<span class="hljs-string">&quot;&quot;</span><br><span class="hljs-built_in">export</span> menuentry_id_option<br>menuentry <span class="hljs-string">&#x27;Ubuntu&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-simple-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>submenu <span class="hljs-string">&#x27;Advanced options for Ubuntu&#x27;</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-advanced-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>    menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 6.10.2-061002-generic&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-6.10.2-061002-generic-advanced-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>    menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 6.10.2-061002-generic (recovery mode)&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-6.10.2-061002-generic-recovery-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>    menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 6.8.0-39-generic&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-6.8.0-39-generic-advanced-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>    menuentry <span class="hljs-string">&#x27;Ubuntu, with Linux 6.8.0-39-generic (recovery mode)&#x27;</span> --class ubuntu --class gnu-linux --class gnu --class os <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;gnulinux-6.8.0-39-generic-recovery-dbc01096-0009-4726-8fa2-076494d33602&#x27;</span> &#123;<br>menuentry <span class="hljs-string">&quot;Memory test (memtest86+x64.efi)&quot;</span> --class memtest <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;memtest86+&#x27;</span> &#123;<br>menuentry <span class="hljs-string">&#x27;Memory test (memtest86+x64.efi, serial console)&#x27;</span> --class memtest <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;memtest86+-serial&#x27;</span> &#123;<br>        menuentry <span class="hljs-string">&#x27;UEFI Firmware Settings&#x27;</span> <span class="hljs-variable">$menuentry_id_option</span> <span class="hljs-string">&#x27;uefi-firmware&#x27;</span> &#123;<br><br><span class="hljs-comment"># 更改默认启动内核，将文件中的`GRUB_DEFAULT=0`改为相应的`GRUB_DEFAULT=&quot;1&gt; ?&quot;`</span><br><span class="hljs-built_in">sudo</span> nano /etc/default/grub<br>GRUB_DEFAULT=<span class="hljs-string">&quot;1&gt; 2&quot;</span> <span class="hljs-comment"># 改回`Ubuntu, with Linux 6.8.0-39-generic`</span><br></code></pre></td></tr></table></figure>
+
+<p>参考：</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.onitroad.com/jc/linux/ubuntu/faq/how-to-install-the-nvidia-drivers-on-ubuntu-20-04.html">如何在Ubuntu 20.04 Linux上安装NVIDIA驱动程序</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1wY411p7mU">NVIDIA显卡的Ubuntu驱动程序安装方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://sysin.cn/blog/ubuntu-remove-snap/">删除 Snap 的方法</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.joeyne.cool/http/proxy/ubuntu-%E5%AE%89%E8%A3%85clash%E5%B9%B6%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8/">Ubuntu 配置clash的四种方式</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44267654/article/details/133773997">Ubuntu 23 安装Gnome主题</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/WHU-TD/p/14010786.html">GNOME 桌面美化</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://itsfoss.com/install-themes-ubuntu/">How to Install Themes in Ubuntu Linux</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://askubuntu.com/questions/1513315/issue-with-wireless-network-connection-on-ubuntu-24-04-lts">Issue with Wireless Network Connection on Ubuntu 24.04 LTS</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://sypalo.com/how-to-upgrade-ubuntu">How to upgrade Ubuntu to 24.04 and kernel to latest version</a></p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/zsh/" class="print-no-link">#zsh</a>
+      
+        <a href="/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
+      
+        <a href="/tags/Nvidia/" class="print-no-link">#Nvidia</a>
+      
+        <a href="/tags/Snap/" class="print-no-link">#Snap</a>
+      
+        <a href="/tags/Gnome/" class="print-no-link">#Gnome</a>
+      
+        <a href="/tags/kernel/" class="print-no-link">#kernel</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ubuntu安装记录</div>
+      <div>https://kaysonyu.github.io/2024/08/install-Ubuntu/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yu Kang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 6, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/Modem-and-Router/" title="将光猫设置为桥接">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">将光猫设置为桥接</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/package-management/" title="Ubuntu包管理">
+                        <span class="hidden-mobile">Ubuntu包管理</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","appKey":"gTiuzqlKBUteFsFrdlr8hsTh","path":"window.location.pathname","placeholder":"Please leave your comment.","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>

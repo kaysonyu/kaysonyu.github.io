@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yu Kang">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在线的 C&#x2F;CPP 编译器：Compiler Explorer (godbolt.org) 20 世纪 50 年代，计算机程序主要使用汇编语言开发，这对开发者来说太难了。IBM 也希望销售更多计算机让人们编程，John Backus 针对汇编语言的缺点着手研究开发 Fortran 语言，科学家们希望利用高级语言编写程序，但同时提供接近手动调整的机器代码的性能，在 1957 年，首个编译器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MSVC，GCC，Clang——不同C&#x2F;C++编译器对比">
+<meta property="og:url" content="https://kaysonyu.github.io/2024/10/MSVC-GCC-Clang/index.html">
+<meta property="og:site_name" content="Kang">
+<meta property="og:description" content="在线的 C&#x2F;CPP 编译器：Compiler Explorer (godbolt.org) 20 世纪 50 年代，计算机程序主要使用汇编语言开发，这对开发者来说太难了。IBM 也希望销售更多计算机让人们编程，John Backus 针对汇编语言的缺点着手研究开发 Fortran 语言，科学家们希望利用高级语言编写程序，但同时提供接近手动调整的机器代码的性能，在 1957 年，首个编译器">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-10-04T01:59:00.000Z">
+<meta property="article:modified_time" content="2025-05-05T06:20:29.955Z">
+<meta property="article:author" content="Yu Kang">
+<meta property="article:tag" content="MSVC">
+<meta property="article:tag" content="Clang">
+<meta property="article:tag" content="GCC">
+<meta property="article:tag" content="LLVM">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MSVC，GCC，Clang——不同C/C++编译器对比 - Kang</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kaysonyu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","app_key":"gTiuzqlKBUteFsFrdlr8hsTh","server_url":"https://pppxp5yi.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Kang" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kang</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MSVC，GCC，Clang——不同C/C++编译器对比"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-04 09:59" pubdate>
+          October 4, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> views
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MSVC，GCC，Clang——不同C/C++编译器对比</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>在线的 C&#x2F;CPP 编译器：<a target="_blank" rel="noopener" href="https://godbolt.org/">Compiler Explorer (godbolt.org)</a></p>
+<p>20 世纪 50 年代，计算机程序主要使用汇编语言开发，这对开发者来说太难了。IBM 也希望销售更多计算机让人们编程，<em>John Backus</em> 针对汇编语言的缺点着手研究开发 <strong>Fortran</strong> 语言，科学家们希望利用高级语言编写程序，但同时提供接近手动调整的机器代码的性能，在 1957 年，首个编译器 IBM Fortran 诞生了。</p>
+<h1 id="MSVC"><a href="#MSVC" class="headerlink" title="MSVC"></a>MSVC</h1><p>MSVC（Microsoft Visual C++）是微软公司的 C++开发工具，具有集成开发环境，可提供编辑 C 语言，C++以及 C++&#x2F;CLI 等编程语言。</p>
+<p>VC++集成了便利的调试工具，特别是集成了微软 Windows 操作系统应用程序接口（Windows API）、三维动画 DirectX API，微软. NET 框架。</p>
+<h1 id="GCC"><a href="#GCC" class="headerlink" title="GCC"></a>GCC</h1><p>GCC（GNU Compiler Collection）是由 GNU 项目开发的一套优化编译器，它支持多种编程语言、操作系统和计算机架构。作为自由软件，GCC 由自由软件基金会（FSF）在 GNU 通用公共许可证（GNU GPL）下分发。</p>
+<p>GCC 最初名为 GNU C 编译器（GNU C Compiler），因为它最初只支持 C 语言。然而，不久之后，GCC 就扩展了对 C++ 的支持，并逐渐增加了对 Fortran、Pascal、Objective-C、Java、Ada、Go 等多种语言的支持。</p>
+<p>GCC 不仅是 GNU 操作系统的官方编译器，也是许多类 UNIX 系统和 Linux 发行版的标准编译器。在 GCC 出现之后，BSD 家族的大部分操作系统也开始使用 GCC。不过，一些系统如 FreeBSD、OpenBSD 和 Apple 的 macOS 已经转而使用 Clang 编译器。</p>
+<p>MinGW（Minimalist GNU for Windows）是将 GCC 编译器和 GNU Binutils 移植到 Windows 32位平台的项目。它包括了一系列头文件（用于 Win 32 API）、库和可执行文件。由于最初的 MinGW 项目更新缓慢，且不支持64位环境开发，OneVision Software 于2005年开始开发 MinGW-w64。MinGW-w64 支持 GCC 所支持的大多数编程语言，包括 C、C++、Objective-C、Objective-C++、Fortran 和 Ada。</p>
+<p>GCC 实践：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta"># hello.c</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> HELLO <span class="hljs-string">&quot;hello\n&quot;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-built_in">printf</span>(HELLO);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>预处理生成.i 文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">gcc -E hello.c -o hello.i<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta"># hello.i</span><br>...<br>...<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>将预处理的文件转换为特定的汇编文件。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">gcc</span> -S hello.i -o hello.s<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-string">.file</span>	<span class="hljs-string">&quot;hello.c&quot;</span><br>	<span class="hljs-string">.text</span><br>	<span class="hljs-string">.section</span>	<span class="hljs-string">.rodata</span><br><span class="hljs-string">.LC0</span>:<br>	<span class="hljs-string">.string</span>	<span class="hljs-string">&quot;hello&quot;</span><br>	<span class="hljs-string">.text</span><br>	<span class="hljs-string">.globl</span>	main<br>	<span class="hljs-string">.type</span>	main, @function<br>main:<br><span class="hljs-string">.LFB0</span>:<br>	<span class="hljs-string">.cfi_startproc</span><br>	endbr64<br>	pushq	%rbp<br>	<span class="hljs-string">.cfi_def_cfa_offset</span> 16<br>	<span class="hljs-string">.cfi_offset</span> 6, -16<br>	movq	%rsp, %rbp<br>	<span class="hljs-string">.cfi_def_cfa_register</span> 6<br>	leaq	<span class="hljs-string">.LC0</span><span class="hljs-params">(%rip)</span>, %rax<br>	movq	%rax, %rdi<br>	call	puts@PLT<br>	movl	$0, %eax<br>	popq	%rbp<br>	<span class="hljs-string">.cfi_def_cfa</span> 7, 8<br>	ret<br>	<span class="hljs-string">.cfi_endproc</span><br><span class="hljs-string">.LFE0</span>:<br>	<span class="hljs-string">.size</span>	main, <span class="hljs-string">.-main</span><br>	<span class="hljs-string">.ident</span>	<span class="hljs-string">&quot;GCC: (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0&quot;</span><br>	<span class="hljs-string">.section</span>	<span class="hljs-string">.note.GNU-stack</span>,<span class="hljs-string">&quot;&quot;</span>,@progbits<br>	<span class="hljs-string">.section</span>	<span class="hljs-string">.note.gnu.property</span>,<span class="hljs-string">&quot;a&quot;</span><br>	<span class="hljs-string">.align</span> 8<br>	<span class="hljs-string">.long</span>	1f - 0f<br>	<span class="hljs-string">.long</span>	4f - 1f<br>	<span class="hljs-string">.long</span>	5<br>0:<br>	<span class="hljs-string">.string</span>	<span class="hljs-string">&quot;GNU&quot;</span><br>1:<br>	<span class="hljs-string">.align</span> 8<br>	<span class="hljs-string">.long</span>	0xc0000002<br>	<span class="hljs-string">.long</span>	3f - 2f<br>2:<br>	<span class="hljs-string">.long</span>	0x3<br>3:<br>	<span class="hljs-string">.align</span> 8<br>4:<br></code></pre></td></tr></table></figure>
+
+<p>将汇编代码转换为机器指令，由汇编器完成。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">gcc -c hello.c -o hello.o<br></code></pre></td></tr></table></figure>
+
+<p>链接。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">gcc -o hello.o -o hello<br></code></pre></td></tr></table></figure>
+
+<h1 id="Clang"><a href="#Clang" class="headerlink" title="Clang"></a>Clang</h1><p>Clang 是一个<strong>编译器前端</strong>，支持多种编程语言，包括 C、C++、Objective-C、Objective-C++，以及支持 OpenMP、OpenCL、RenderScript、CUDA、SYCL 和 HIP 等软件框架。它可以作为 GNU 编译器集合（GCC）的替代品，并且兼容 GCC 的大多数编译标志和非官方的语言扩展。Clang 使用 LLVM 作为其编译器的后端。</p>
+<p>LLVM 是<strong>一套编译器和工具链技术</strong>，它允许开发者为任何编程语言创建前端，为任何指令集架构创建后端。LLVM 的设计核心是一种与语言无关的中间表示（<strong>IR</strong>），这种 IR 可以看作是一种可移植的高级汇编语言，它可以通过多次转换来进行优化。LLVM 项目始于 2000 年，在伊利诺伊大学厄巴纳-香槟分校由 Vikram Adve 和 Chris Lattner 领导。最初，LLVM 是作为研究静态和动态编程语言动态编译技术的研究基础设施而开发的。</p>
+<p>2005 年，苹果公司聘请了 Chris Lattner 并组建了一个团队，致力于将 LLVM 系统应用于苹果开发系统中的多种用途。最初，LLVM 项目计划使用 GCC 作为前端，但由于 GCC 源代码庞大且实现复杂，加之苹果的软件大量使用 Objective-C，而 GCC 对 Objective-C 的支持优先级不高，以及 GCC 的 GNU 通用公共许可证（GPL）第 3 版要求分发 GCC 扩展或修改版本的开发者必须提供源代码，这与 LLVM 的宽松许可证不符。因此，苹果公司开发了 Clang，自 Xcode 4 起，苹果的默认编译器改为了 Clang&#x2F;LLVM。</p>
+<p>Clang&#x2F;LLVM 实践：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta"># hello.c</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> HELLO <span class="hljs-string">&quot;hello\n&quot;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-built_in">printf</span>(HELLO);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>预处理生成.i 文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">clang -E -c ./hello.c -o ./hello.i<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta"># hello.i</span><br>...<br>...<br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> &#123;<br>  <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;hello\n&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>将.i 文件转化为.bc 文件，这是 LLVM 位代码（bitcode）文件，是中间表示形式，可供进一步优化和转换。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">clang -emit-llvm ./hello.i -c -o ./hello.bc<br></code></pre></td></tr></table></figure>
+
+<p>将.c 文件编译成 LLVM 中间表示的汇编代码文件.ll，人类可读的中间表示形式。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">clang -emit-llvm ./hello.c -S -o ./hello.ll<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs ll">; ModuleID = &#x27;./hello.c&#x27;<br>source_filename = &quot;./hello.c&quot;<br>target datalayout = &quot;e-m:e-p270:32:32-p271:32:32-p272:64:64-i64:64-f80:128-n8:16:32:64-S128&quot;<br>target triple = &quot;x86_64-pc-linux-gnu&quot;<br><br>@.str = private unnamed_addr constant [7 x i8] c&quot;hello\0A\00&quot;, align 1<br><br>; Function Attrs: noinline nounwind optnone uwtable<br>define dso_local i32 @main() #0 &#123;<br>  %1 = call i32 (i8*, ...) @printf(i8* noundef getelementptr inbounds ([7 x i8], [7 x i8]* @.str, i64 0, i64 0))<br>  ret i32 0<br>&#125;<br><br>declare i32 @printf(i8* noundef, ...) #1<br><br>attributes #0 = &#123; noinline nounwind optnone uwtable &quot;frame-pointer&quot;=&quot;all&quot; &quot;min-legal-vector-width&quot;=&quot;0&quot; &quot;no-trapping-math&quot;=&quot;true&quot; &quot;stack-protector-buffer-size&quot;=&quot;8&quot; &quot;target-cpu&quot;=&quot;x86-64&quot; &quot;target-features&quot;=&quot;+cx8,+fxsr,+mmx,+sse,+sse2,+x87&quot; &quot;tune-cpu&quot;=&quot;generic&quot; &#125;<br>attributes #1 = &#123; &quot;frame-pointer&quot;=&quot;all&quot; &quot;no-trapping-math&quot;=&quot;true&quot; &quot;stack-protector-buffer-size&quot;=&quot;8&quot; &quot;target-cpu&quot;=&quot;x86-64&quot; &quot;target-features&quot;=&quot;+cx8,+fxsr,+mmx,+sse,+sse2,+x87&quot; &quot;tune-cpu&quot;=&quot;generic&quot; &#125;<br><br>!llvm.module.flags = !&#123;!0, !1, !2, !3, !4&#125;<br>!llvm.ident = !&#123;!5&#125;<br><br>!0 = !&#123;i32 1, !&quot;wchar_size&quot;, i32 4&#125;<br>!1 = !&#123;i32 7, !&quot;PIC Level&quot;, i32 2&#125;<br>!2 = !&#123;i32 7, !&quot;PIE Level&quot;, i32 2&#125;<br>!3 = !&#123;i32 7, !&quot;uwtable&quot;, i32 1&#125;<br>!4 = !&#123;i32 7, !&quot;frame-pointer&quot;, i32 2&#125;<br>!5 = !&#123;!&quot;Ubuntu clang version 14.0.0-1ubuntu1.1&quot;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用 llc 将中间表示文件（.bc 或 .ll）转换为目标平台的汇编代码。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 这两种转换生成的汇编代码相同</span><br>llc ./hello.ll -o ./hello.s<br>llc ./hello.bc -o ./hello.s<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs assembly">.text<br>	.file	&quot;hello.c&quot;<br>	.globl	main                            # -- Begin function main<br>	.p2align	4, 0x90<br>	.type	main,@function<br>main:                                   # @main<br>	.cfi_startproc<br># %bb.0:<br>	pushq	%rbp<br>	.cfi_def_cfa_offset 16<br>	.cfi_offset %rbp, -16<br>	movq	%rsp, %rbp<br>	.cfi_def_cfa_register %rbp<br>	movabsq	$.L.str, %rdi<br>	movb	$0, %al<br>	callq	printf@PLT<br>	xorl	%eax, %eax<br>	popq	%rbp<br>	.cfi_def_cfa %rsp, 8<br>	retq<br>.Lfunc_end0:<br>	.size	main, .Lfunc_end0-main<br>	.cfi_endproc<br>                                        # -- End function<br>	.type	.L.str,@object                  # @.str<br>	.section	.rodata.str1.1,&quot;aMS&quot;,@progbits,1<br>.L.str:<br>	.asciz	&quot;hello\n&quot;<br>	.size	.L.str, 7<br><br>	.ident	&quot;Ubuntu clang version 14.0.0-1ubuntu1.1&quot;<br>	.section	&quot;.note.GNU-stack&quot;,&quot;&quot;,@progbits<br></code></pre></td></tr></table></figure>
+
+<p>转变为可执行的二进制文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">clang ./hello.s -o hello<br></code></pre></td></tr></table></figure>
+
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">MSVC</th>
+<th align="center">GCC</th>
+<th align="center">Clang&#x2F;LLVM</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">开源协议</td>
+<td align="center"></td>
+<td align="center">GNU GPL</td>
+<td align="center">Apache 2.0</td>
+</tr>
+<tr>
+<td align="center">支持平台</td>
+<td align="center">Windows</td>
+<td align="center">UNIX、Windows、Mac</td>
+<td align="center">Unix、Mac</td>
+</tr>
+<tr>
+<td align="center">构建工具</td>
+<td align="center"></td>
+<td align="center">Make</td>
+<td align="center">CMake</td>
+</tr>
+<tr>
+<td align="center">链接器</td>
+<td align="center"></td>
+<td align="center">ld</td>
+<td align="center">lld</td>
+</tr>
+<tr>
+<td align="center">调试器</td>
+<td align="center"></td>
+<td align="center">GDB</td>
+<td align="center">LLDB</td>
+</tr>
+</tbody></table>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4OTc4MzI5OA==&mid=2247520367&idx=1&sn=cdbcd59112b4867f9c4eb853bb150af5&source=41#wechat_redirect">编译器的「五个十年」发展史</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/">维基百科</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/chenzomi12/AISystem">chenzomi12&#x2F;AISystem: AISystem 主要是指AI系统，包括AI芯片、AI编译器、AI推理和训练框架等AI全栈底层技术 (github.com)</a></li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MSVC/" class="print-no-link">#MSVC</a>
+      
+        <a href="/tags/Clang/" class="print-no-link">#Clang</a>
+      
+        <a href="/tags/GCC/" class="print-no-link">#GCC</a>
+      
+        <a href="/tags/LLVM/" class="print-no-link">#LLVM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MSVC，GCC，Clang——不同C/C++编译器对比</div>
+      <div>https://kaysonyu.github.io/2024/10/MSVC-GCC-Clang/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yu Kang</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>October 4, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/VSCode-Extension/" title="vscode插件配置">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vscode插件配置</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/Open-Source/" title="开源贡献的一些规范">
+                        <span class="hidden-mobile">开源贡献的一些规范</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PPpxP5yiZ76zPRi8aCjkMKZU-gzGzoHsz","appKey":"gTiuzqlKBUteFsFrdlr8hsTh","path":"window.location.pathname","placeholder":"Please leave your comment.","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        Views: 
+        <span id="leancloud-site-pv"></span>
+        
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        Visitors: 
+        <span id="leancloud-site-uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
